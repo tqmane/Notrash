@@ -1,0 +1,32 @@
+---
+title: "トラブルシューティング"
+description: "症状から、確認する場所を絞る。"
+keywords: [Notrash, Nothing OS, トラブルシューティング]
+---
+
+<AccordionGroup>
+<Accordion title="LSPosedが未接続と表示される">
+Vector / LSPosedでNotrashが有効か、フレームワークがAPI 102に対応しているか確認し、Notrashを開き直します。rootがあるだけでは、フレームワークやモジュールの読み込みは完了しません。
+</Accordion>
+<Accordion title="有効にしたのにカメラの設定が出ない">
+対象スコープが `com.nothing.camera` か確認し、Notrashのカメラ設定をONにして、カメラを完全に終了して開き直します。[カメラのガイド](/docs/camera)も確認してください。
+</Accordion>
+<Accordion title="Voiceの設定は開けるが、キーボードボタンが出ない">
+Recorderの入口と、OSのキーボード連携は別です。**systemスコープ**、NotrashのVoice設定、純正の「キーボードボタンを表示」を順に確認してください。OS側に対応版が未ロードの場合、アプリだけを開き直しても反映されません。
+</Accordion>
+<Accordion title="OS側の再読み込みが失敗する">
+ホットリロードには、対応版が対象プロセスへすでにロードされている必要があります。初回ロードや非対応の旧版には使用できません。一時root環境で通常の端末再起動を行うとrootを失うため、[導入ガイド](/docs/install)で反映方法の違いを確認してください。
+</Accordion>
+<Accordion title="更新後、古い設定や表示が残る">
+Notrashと対象アプリを開き直してください。OS側はアプリのプロセスと別に動作します。対応版がロード済みならNotrashからフックの再読み込みを試します。
+</Accordion>
+<Accordion title="ボタンは出るが、音声処理が完了しない">
+純正アプリのマイク権限、音声設定、ネットワーク、アカウント状態を確認します。機種制限の解除は、通信や純正サービスのエラーを解消する機能ではありません。
+</Accordion>
+</AccordionGroup>
+
+## 切り分けに使う情報
+
+端末モデル、Android / Nothing OSのビルド、Notrashのバージョン、Vector / LSPosedのバージョン、対象アプリのバージョン、選択したスコープを確認します。
+
+[対応環境](/docs/compatibility) · [Voiceの実装](/wiki/essential-recorder)

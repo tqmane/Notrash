@@ -1,0 +1,21 @@
+{
+  "name": "notrash-website",
+  "version": "1.0.0",
+  "description": "Notrash landing page and Mintlify Docs / Wiki",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "dev": "mint dev --port 3333 --no-open",
+    "validate": "mint validate",
+    "check:links": "mint broken-links",
+    "sync:wiki": "node scripts/sync-wiki.mjs",
+    "check:content": "node scripts/check-content.mjs"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "mint": "4.2.876"
+  },
+  "private": true,
+  "engines": {
+    "node": "^22.0.0 || ^24.0.0"
+  }
+}

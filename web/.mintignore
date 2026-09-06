@@ -1,0 +1,7 @@
+node_modules/
+scripts/
+README.md
+package*.json
+.mintlify/
+.hallmark/
+*.log

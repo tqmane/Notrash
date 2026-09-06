@@ -1,0 +1,47 @@
+---
+title: "インストール"
+description: "Notrashのダウンロードと初期設定。"
+keywords: [Notrash, Nothing OS, インストール]
+---
+
+## ダウンロード
+
+<Card title="Notrashをダウンロード" icon="download" href="https://github.com/tqmane/Notrash/releases/latest">GitHubから最新リリースのAPKを入手できます。</Card>
+
+## 必要なもの
+
+- 対応するNothing OSと純正アプリ。[確認済みの組み合わせ](/docs/compatibility)を参照してください。
+- libxposed API 102対応のVector / LSPosed。
+- 上記フレームワークが動作するroot環境。
+
+<Steps>
+  <Step title="APKをインストールする">
+    ダウンロードしたAPKを端末で開き、Notrashをインストールします。
+  </Step>
+  <Step title="モジュールを有効にする">
+    Vector / LSPosedでNotrashを有効にし、推奨スコープを適用します。
+  </Step>
+  <Step title="Notrashで必要な機能をONにする">
+    接続状態を確認し、使いたい機能だけONにします。機能の初期状態はすべてOFFです。
+  </Step>
+  <Step title="対象アプリを開き直す">
+    カメラは終了して開き直してください。OS側のフックが未ロードの場合は、下の「設定の反映」も確認します。
+  </Step>
+</Steps>
+
+## Phone (3a)でBootloader Unlockせずに使う
+
+[Root-My-Device v1.0](https://github.com/tqmane/Root-My-Device/releases/tag/v1.0)を使う方法があります。対象は **A059 / Asteroids、ビルド B4.1-260618-1048** など、同プロジェクトが指定する条件に一致する端末です。対応条件と手順はリンク先を確認してください。
+
+一時root・KernelSU・Vectorを準備した後、Notrashを設定します。通常の端末再起動では一時rootが失われます。他のOTAや機種への対応を意味しません。
+
+## 設定の反映
+
+- 「対象アプリを終了」はカメラ・Essential Recorder・Essential Spaceだけを終了します。
+- OS側フックのロード後、VoiceのON/OFFは再起動せず反映できます。
+- 初めて `system` スコープを追加した場合、起動中のOSに自動でモジュールが追加されるわけではありません。
+- API 102のホットリロードは、すでに対応版がロードされたプロセスの更新用です。
+
+
+
+ボタンが出ない場合は[トラブルシューティング](/docs/troubleshooting)へ進んでください。

@@ -1,0 +1,132 @@
+---
+title: "Essential Recorderの解析"
+description: "16.0.60のVoice本体と、OSのキーボード連携。"
+keywords: [Notrash, Wiki, essential-recorder]
+---
+
+Essential Voice の紹介画面・設定画面・録音サービス・音声入力 API は、`com.nothing.ntessentialrecorder` の APK に含まれる。キーボード下部のボタンを有効にするには、Recorder と Nothing OS の入力サービスの両方が必要。
+
+## 解析対象
+
+| 項目 | 値 |
+| --- | --- |
+| APK | `apk/com.nothing.ntessentialrecorder_16.0.60.apk` |
+| versionCode | `160060` |
+| 最小 / 対象 Android API | `35 / 36` |
+| SHA-256 | `ed25232037606f052d8dd30383c032cb10b809cec2b26abe634149fa9e34687a` |
+| OS 側の対象 | A059 / Asteroids、Android 16、ビルド `2606181048` |
+
+解析日・実機確認日: 2026-09-06。
+
+## Recorder に含まれるもの
+
+| クラス | 役割 |
+| --- | --- |
+| `SettingsActivity` | 純正 Essential Key の設定入口 |
+| `EssentialVoiceIntroActivity` | Essential Voice の紹介と設定への入口 |
+| `EssentialVoiceSettingsActivity` | キーボードボタン・言語・キー動作などの設定 |
+| `EssentialVoiceTutorialActivity` | 操作説明 |
+| `EssentialVoiceService` | OS からの指示を受ける音声入力サービス |
+| `network.NetworkApi` | Voice の音声処理リクエスト |
+
+`EssentialVoiceIntroActivity` は `com.ai.entrance.collections.action.FEATURE` を公開する。純正の「インテリジェンスツールキット」など、Essential の機能一覧を取得する画面にこの Activity が現れる。Notrash のショートカットだけを追加しているわけではない。
+
+## 機種制限は二段階
+
+### 1. Recorder の入口
+
+`MainApplication` から実行される `z6.f` が `f5.i.P("NTF_ESSENTIAL_VOICE")` を調べ、Intro / Settings / Tutorial の3つの Activity を有効・無効にする。
+
+`EssentialVoiceHooks.java` は、このフラグを Notrash の設定が ON の場合だけ有効として扱う。起動済みの Recorder には設定変更リスナーで同じ3つの Activity を更新する。OFF に戻すと純正の対応判定に戻るため、元から対応している機種の機能を一律に無効化しない。
+
+### 2. OS のキーボード連携
+
+実機の `/system/framework/nt-services.jar` には `com.android.server.wm.NtEssentialVoiceImpl` が存在する。
+
+```java
+public static final boolean nhp = NtFeaturesUtils.isSupport(new int[]{153});
+```
+
+A059 の純正フラグ `153` は OFF。`NtExtServiceFactory` はこの判定に従って何もしない実装を作り、キャッシュする。Recorder の画面だけを有効にしても、この OS 側の実装は切り替わらない。
+
+`InputMethodManagerService.getInputMethodNavButtonFlagsLocked` は、次の戻り値が true のときだけ IME に渡すフラグへ `128` を加える。
+
+```java
+NtExtServiceFactory.getOrCreate(NT_ESSENTIAL_VOICE).shouldShowVoiceInputIcon()
+```
+
+純正 `shouldShowVoiceInputIcon()` は、キーボードボタン設定 ON・ロック画面非表示・戻る操作の状態・初期設定完了を確認する。Notrash はこれらの条件を無条件 true にしない。
+
+## ボタンが出なかった原因と修正
+
+1. **スコープ名が誤っていた。** `android` ではなく、Vector のシステムフック用スコープは **`system`**。インストール済み Vector の設定取得処理も `app_pkg_name="system"` を検索していた。元の設定では OS 側に Notrash が読み込まれていなかった。
+2. **OS が非対応用の実装を保持していた。** 起動時のフラグを Recorder 側だけで変更しても、キャッシュ済みの OS サービスは変わらない。
+3. **アプリの有効表示と設定共有が不適切だった。** 自己フックによる有効判定と、一時 JSON ファイルを優先する設定読み込みを、libxposed Service / RemotePreferences に置き換えた。
+
+`SystemServerHooks.java` は、`getOrCreate` の `NT_ESSENTIAL_VOICE` だけを対象にする。ON で、元の戻り値が非対応用の実装の場合に限り、既存の `NtServiceInjector` から純正 `NtEssentialVoiceImpl` を生成して返す。OFF では元の戻り値に戻し、入力停止と IME 状態の更新を純正メソッドに依頼する。
+
+```mermaid
+flowchart LR
+    A[Notrash の ON/OFF] --> P[Vector RemotePreferences]
+    P --> R[Recorder の対応判定]
+    R --> E[純正 Essential 一覧の入口]
+    P --> S[system スコープのフック]
+    S --> V[純正 NtEssentialVoiceImpl]
+    V --> I[InputMethodManagerService のフラグ 128]
+    I --> K[キーボード下部の Voice ボタン]
+    K --> V
+    V --> B[Recorder の EssentialVoiceService]
+```
+
+OS にこのサービスの実装がない場合、機種判定だけの変更では動作しない。他社 OS への Voice 一式の移植や、全機種での動作保証は行っていない。
+
+## 音声入力の流れ
+
+OS と `EssentialVoiceService` は Messenger で連携する。
+
+| メッセージ | 役割 |
+| --- | --- |
+| `1001` | 入力開始。対象アプリ、パスワード欄判定、テーマ、キー由来かを渡す |
+| `1002` | IME の表示・高さを更新する |
+| `1003` | 入力停止 |
+| `2001` | `voice_input_result` を OS に返す |
+
+OS 側は既存の `IRemoteInputConnection.commitText` で結果を入力する。自動送信フラグも純正処理に従う。Notrash 自体は別の音声認識サービスや入力先を実装しない。
+
+Recorder の `network.NetworkApi.voiceInput` は、`POST essentialVoice/ai/v1/transcription` を定義している。音声ファイル、言語、トーン、スニペット、出力種別、翻訳先などを送る構造になっている。音声処理 API は Recorder 側に存在しており、[Space の ASR エンジン](/wiki/essential-space)の機種判定をすべて偽装する必要はなかった。
+
+この解析では認証情報・送信先・API の利用条件を変更していない。ネットワーク障害、音声認識精度、翻訳言語別の品質は別の確認項目。
+
+## 設定反映と再起動
+
+- アプリの ON/OFF は RemotePreferences で共有する。実機では OS フックのロード後、ボタンの表示・非表示を端末再起動なしで切り替えられた。
+- 初めて `system` スコープを追加した場合、すでに動いている OS へ自動でモジュールが追加されるわけではない。
+- 検証では `am restart` で Android のユーザー空間を再起動した。カーネルの起動IDは変わらず、`su -c id` は引き続き root を返した。
+- Notrash 1.0.1 は API 102 のシステムフック用ホットリロードに対応する。更新元のモジュールも対応している必要があり、初回ロードの代わりにはならない。1.0.1 → 1.0.2 の更新で `SUCCEEDED` を確認し、system_server の PID を維持したまま更新できた。
+
+## 実機検証
+
+| 項目 | 結果 |
+| --- | --- |
+| 純正 Essential の入口 | ON で表示、OFF で非表示 |
+| 起動済み Recorder への設定反映 | ON/OFF 両方向で確認 |
+| Gboard 下部の黄色い Voice ボタン | 表示を確認、ユーザーも確認 |
+| ボタンの OFF → ON | 消える / 再表示を確認、OS 再起動不要 |
+| 音声処理結果 | 実機に結果通知が出ることを観察 |
+| 入力欄への挿入・翻訳精度・各言語 | 専用の一連の試験は未実施 |
+| tmpRoot | Android 部分の再起動後も維持 |
+
+画像: [ON](/images/keyboard-on.png) / [OFF](/images/keyboard-off.png)。
+
+## 解析元
+
+- `decompiled_recorder/sources/z6/f.java`、`f5/i.java`: 入口の機種判定。
+- `decompiled_recorder_res/resources/AndroidManifest.xml`: Activity とサービスの公開範囲。
+- `decompiled_recorder/sources/com/nothing/ntessentialrecorder/EssentialVoiceService.java`: Messenger の処理。
+- `decompiled_recorder/sources/com/nothing/ntessentialrecorder/network/NetworkApi.java`: Voice API。
+- `verification/nt-src/sources/com/android/server/wm/NtEssentialVoiceImpl.java`: OS の本体。
+- `verification/NtExtServiceFactory.java`: 拡張サービスのキャッシュ。
+- `verification/InputMethodManagerService.java`: ボタン表示フラグ。
+- `verification/daemon-src/sources/defpackage/p7.java`: 実機 Vector の `system` スコープ取得。
+
+[全体の導入手順](/docs/overview) · [カメラ](/wiki/camera) · [Essential Space](/wiki/essential-space)

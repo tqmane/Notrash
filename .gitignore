@@ -1,0 +1,26 @@
+# Android / Gradle
+.gradle/
+.kotlin/
+build/
+/local.properties
+.externalNativeBuild/
+.cxx/
+captures/
+*.hprof
+*.jks
+*.keystore
+
+# Local configuration and editor files
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+
+# Tool output
+__pycache__/
+*.pyc
+*.log
+/verification/

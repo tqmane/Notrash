@@ -1,0 +1,126 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "willow",
+  "name": "Notrash",
+  "description": "Nothing OS を、自分の設定で。Notrash の使い方と実装をまとめた Docs / Wiki。",
+  "colors": {
+    "primary": "#D71921",
+    "light": "#F64B50",
+    "dark": "#B90D15"
+  },
+  "logo": {
+    "light": "/images/wordmark-dark.svg",
+    "dark": "/images/wordmark-light.svg",
+    "href": "/"
+  },
+  "favicon": "/images/favicon.svg",
+  "appearance": {
+    "default": "light",
+    "strict": false
+  },
+  "background": {
+    "color": {
+      "light": "#FAFAF8",
+      "dark": "#101010"
+    }
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Docs",
+        "href": "/docs/overview"
+      },
+      {
+        "label": "Wiki",
+        "href": "/wiki/essential-recorder"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "はじめる",
+      "href": "/docs/install"
+    }
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Notrash",
+        "pages": [
+          "index",
+          "docs/overview"
+        ]
+      },
+      {
+        "group": "はじめる",
+        "pages": [
+          "docs/install",
+          "docs/compatibility"
+        ]
+      },
+      {
+        "group": "使い方",
+        "pages": [
+          "docs/camera",
+          "docs/essential-voice",
+          "docs/appearance"
+        ]
+      },
+      {
+        "group": "困ったとき",
+        "pages": [
+          "docs/troubleshooting"
+        ]
+      },
+      {
+        "group": "Wiki · 実装を読む",
+        "pages": [
+          "wiki/camera",
+          "wiki/essential-recorder",
+          "wiki/essential-space"
+        ]
+      }
+    ]
+  },
+  "contextual": {
+    "options": [
+      "copy"
+    ]
+  },
+  "search": {
+    "prompt": "使い方・機種・設定を検索"
+  },
+  "errors": {
+    "404": {
+      "redirect": false,
+      "title": "ページが見つかりません",
+      "description": "<div className=\"notrash-404\"><p className=\"notrash-404-code\">404<span>.</span></p><p>このページは移動したか、削除された可能性があります。</p><nav aria-label=\"ページの移動先\"><a href=\"/\">ホームへ</a><a href=\"/docs/overview\">Docs</a><a href=\"/wiki/essential-recorder\">Wiki</a></nav></div>"
+    }
+  },
+  "footer": {
+    "links": [
+      {
+        "header": "Notrash",
+        "items": [
+          {
+            "label": "ホーム",
+            "href": "/"
+          },
+          {
+            "label": "導入ガイド",
+            "href": "/docs/install"
+          },
+          {
+            "label": "対応環境",
+            "href": "/docs/compatibility"
+          }
+        ]
+      }
+    ]
+  },
+  "variables": {
+    "appVersion": "1.0.2"
+  }
+}
