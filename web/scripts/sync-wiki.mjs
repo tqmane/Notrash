@@ -1,4 +1,4 @@
-import { readFile, writeFile, copyFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -17,9 +17,9 @@ for (const [slug,title,description] of pages) {
     if (url.startsWith('../app/')) return '`' + label + '`';
     return match;
   });
-  await writeFile(path.join(root, 'wiki', slug + '.mdx'), `---\ntitle: "${title}"\ndescription: "${description}"\nkeywords: [Notrash, Wiki, ${slug}]\n---\n\n${body}\n`);
-}
-for (const name of ['camera-on.png','keyboard-on.png','keyboard-off.png']) {
-  await copyFile(path.join(root,'..','verification',name), path.join(root,'images',name));
+  const hasDiagram = /^```mermaid\r?$/m.test(body);
+  body = body.replace(/```mermaid\r?\n([\s\S]*?)```/g, (_, code) => `<Mermaid code={${JSON.stringify(code.trim())}} />`);
+  const imports = hasDiagram ? "import Mermaid from '../../../components/Mermaid.astro';\n\n" : '';
+  await writeFile(path.join(root, 'src/content/docs/wiki', slug + '.mdx'), `---\ntitle: "${title}"\ndescription: "${description}"\nkeywords: [Notrash, Wiki, ${slug}]\n---\n\n${imports}${body}\n`);
 }
 console.log('Synced 3 wiki pages from the Android project documentation.');

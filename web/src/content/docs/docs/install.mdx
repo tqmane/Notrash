@@ -4,9 +4,11 @@ description: "Notrashのダウンロードと初期設定。"
 keywords: [Notrash, Nothing OS, インストール]
 ---
 
+import { LinkCard, Steps } from '@astrojs/starlight/components';
+
 ## ダウンロード
 
-<Card title="Notrashをダウンロード" icon="download" href="https://github.com/tqmane/Notrash/releases/latest">GitHubから最新リリースのAPKを入手できます。</Card>
+<LinkCard title="Notrashをダウンロード" href="https://github.com/tqmane/Notrash/releases/latest" description="GitHubから最新リリースのAPKを入手できます。" />
 
 ## 必要なもの
 
@@ -15,18 +17,23 @@ keywords: [Notrash, Nothing OS, インストール]
 - 上記フレームワークが動作するroot環境。
 
 <Steps>
-  <Step title="APKをインストールする">
-    ダウンロードしたAPKを端末で開き、Notrashをインストールします。
-  </Step>
-  <Step title="モジュールを有効にする">
-    Vector / LSPosedでNotrashを有効にし、推奨スコープを適用します。
-  </Step>
-  <Step title="Notrashで必要な機能をONにする">
-    接続状態を確認し、使いたい機能だけONにします。機能の初期状態はすべてOFFです。
-  </Step>
-  <Step title="対象アプリを開き直す">
-    カメラは終了して開き直してください。OS側のフックが未ロードの場合は、下の「設定の反映」も確認します。
-  </Step>
+
+1. **APKをインストールする**
+
+   ダウンロードしたAPKを端末で開き、Notrashをインストールします。
+
+2. **モジュールを有効にする**
+
+   Vector / LSPosedでNotrashを有効にし、推奨スコープを適用します。
+
+3. **Notrashで必要な機能をONにする**
+
+   接続状態を確認し、使いたい機能だけONにします。機能の初期状態はすべてOFFです。
+
+4. **対象アプリを開き直す**
+
+   カメラは終了して開き直してください。OS側のフックが未ロードの場合は、下の「設定の反映」も確認します。
+
 </Steps>
 
 ## Phone (3a)でBootloader Unlockせずに使う

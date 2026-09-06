@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 export const Landing = () => {
   const [mode, setMode] = useState(0);
   const modes = ["ダーク・高コントラスト", "ダーク・通常", "ライト・高コントラスト", "ライト・通常"];

@@ -1,0 +1,14 @@
+---
+import Site from '../layouts/Site.astro';
+---
+<Site title="ページが見つかりません — Notrash" description="ホーム、Docs、Wikiからお探しのページへ進んでください。">
+  <main class="notrash-landing notrash-404">
+    <a class="lp-nav-brand" href="/">NOTRASH<span></span></a>
+    <p class="notrash-404-code">404<span>.</span></p>
+    <h1>ページが見つかりません</h1>
+    <p>このページは移動したか、削除された可能性があります。</p>
+    <nav aria-label="ページの移動先">
+      <a href="/">ホームへ</a><a href="/docs/overview">Docs</a><a href="/wiki/essential-recorder">Wiki</a>
+    </nav>
+  </main>
+</Site>

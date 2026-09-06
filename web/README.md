@@ -1,6 +1,6 @@
 # Notrash Web
 
-Nothing風のLPと、MintlifyのDocs / Wiki。
+Nothing風のLPと、Astro / StarlightのDocs / Wiki。Vercelへ静的サイトとして公開します。
 
 | パス | 内容 |
 | --- | --- |
@@ -11,7 +11,7 @@ Nothing風のLPと、MintlifyのDocs / Wiki。
 
 ## ローカルで開く
 
-Node.js 24 LTSを使用します。Mintlify CLIはNode 25に対応していません。
+Node.js 24 LTSを使用します。
 
 ```sh
 npm ci
@@ -22,18 +22,20 @@ npm run dev
 
 ## 内容を更新する
 
-- LP: `index.mdx`、`snippets/landing.jsx`、`custom.css`、`tokens.css`
-- ガイド: `docs/*.mdx`
+- LP: `src/pages/index.astro`、`src/components/Landing.jsx`、`custom.css`、`tokens.css`
+- ガイド: `src/content/docs/docs/*.mdx`
+- Docsのナビゲーション・外観: `astro.config.mjs`、`docs.css`
+- 404: `src/pages/404.astro`
+- 画像・フォント: `public/`
 - 解析Wiki: 親プロジェクトの `docs/*.md` を編集し、次を実行
 
 ```sh
 npm run sync:wiki
 npm run check:content
-npm run validate
-npm run check:links
+npm run build
 ```
 
-JSXの変更がローカルプレビューに反映されない場合は、開発サーバーを再起動してください。
+Wikiの生成先は `src/content/docs/wiki/`。本文は親プロジェクトの `docs/*.md` を編集します。
 
 APKの配布先は[GitHub Releases](https://github.com/tqmane/Notrash/releases/latest)です。
 
@@ -41,6 +43,8 @@ APKの配布先は[GitHub Releases](https://github.com/tqmane/Notrash/releases/l
 
 ## 公開
 
-Mintlifyでリポジトリを接続し、`docs.json` を含むこのディレクトリをサイトのルートに指定します。ドメインと公開先の設定はMintlify側で行います。
+VercelでGitHubの `tqmane/Notrash` を取り込み、Root Directoryを **`web`**、Production Branchを **`main`** に設定します。
 
-この構成はローカル検証用に準備しています。公開URLはまだ設定していません。Mintlify標準検索をローカルで使うには `mint login` が必要です。
+`vercel.json` にAstro・`npm ci`・`npm run build`・出力先 `dist` を指定済みです。初回デプロイ後は、`main` へのpushで本番サイトが更新されます。環境変数は不要です。
+
+本番ビルドをローカルで開くには `npm run build` の後に `npm run preview` を実行します。全文検索はビルド時に生成され、previewと公開サイトで利用できます。

@@ -1,0 +1,27 @@
+@import './tokens.css';
+@font-face { font-family: 'Notrash NType'; src: url('/fonts/ntype82_regular.otf') format('opentype'); font-display: swap; }
+@font-face { font-family: 'Notrash Dot'; src: url('/fonts/ndot_55.otf') format('opentype'); font-display: swap; }
+:root {
+  --sl-font: var(--font-body);
+  --sl-color-accent-low: #361216;
+  --sl-color-accent: #d71921;
+  --sl-color-accent-high: #ffb1b6;
+  --sl-color-bg: #101010;
+  --sl-color-bg-nav: #101010;
+  --sl-color-bg-sidebar: #101010;
+  --sl-content-width: 52rem;
+}
+:root[data-theme='light'] {
+  --sl-color-accent-low: #ffe9ea;
+  --sl-color-accent: #d71921;
+  --sl-color-accent-high: #a30e16;
+  --sl-color-bg: #fafaf8;
+  --sl-color-bg-nav: #fafaf8;
+  --sl-color-bg-sidebar: #fafaf8;
+}
+.site-title img { width: 9rem; }
+h1 { letter-spacing: -.04em; }
+.sl-markdown-content :not(pre) > code { overflow-wrap: anywhere; }
+.sl-markdown-content details { border: 1px solid var(--sl-color-gray-5); padding: 1rem 1.25rem; }
+.sl-markdown-content summary { cursor: pointer; min-height: 2rem; }
+.sl-markdown-content table { display: block; max-width: 100%; overflow-x: auto; }

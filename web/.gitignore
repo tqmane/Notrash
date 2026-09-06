@@ -1,4 +1,7 @@
 node_modules/
+.astro/
+.vercel/
+dist/
 .mintlify/
 .hallmark/
 *.log

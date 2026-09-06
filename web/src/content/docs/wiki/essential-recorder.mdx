@@ -4,6 +4,8 @@ description: "16.0.60のVoice本体と、OSのキーボード連携。"
 keywords: [Notrash, Wiki, essential-recorder]
 ---
 
+import Mermaid from '../../../components/Mermaid.astro';
+
 Essential Voice の紹介画面・設定画面・録音サービス・音声入力 API は、`com.nothing.ntessentialrecorder` の APK に含まれる。キーボード下部のボタンを有効にするには、Recorder と Nothing OS の入力サービスの両方が必要。
 
 ## 解析対象
@@ -65,18 +67,7 @@ NtExtServiceFactory.getOrCreate(NT_ESSENTIAL_VOICE).shouldShowVoiceInputIcon()
 
 `SystemServerHooks.java` は、`getOrCreate` の `NT_ESSENTIAL_VOICE` だけを対象にする。ON で、元の戻り値が非対応用の実装の場合に限り、既存の `NtServiceInjector` から純正 `NtEssentialVoiceImpl` を生成して返す。OFF では元の戻り値に戻し、入力停止と IME 状態の更新を純正メソッドに依頼する。
 
-```mermaid
-flowchart LR
-    A[Notrash の ON/OFF] --> P[Vector RemotePreferences]
-    P --> R[Recorder の対応判定]
-    R --> E[純正 Essential 一覧の入口]
-    P --> S[system スコープのフック]
-    S --> V[純正 NtEssentialVoiceImpl]
-    V --> I[InputMethodManagerService のフラグ 128]
-    I --> K[キーボード下部の Voice ボタン]
-    K --> V
-    V --> B[Recorder の EssentialVoiceService]
-```
+<Mermaid code={"flowchart LR\r\n    A[Notrash の ON/OFF] --> P[Vector RemotePreferences]\r\n    P --> R[Recorder の対応判定]\r\n    R --> E[純正 Essential 一覧の入口]\r\n    P --> S[system スコープのフック]\r\n    S --> V[純正 NtEssentialVoiceImpl]\r\n    V --> I[InputMethodManagerService のフラグ 128]\r\n    I --> K[キーボード下部の Voice ボタン]\r\n    K --> V\r\n    V --> B[Recorder の EssentialVoiceService]"} />
 
 OS にこのサービスの実装がない場合、機種判定だけの変更では動作しない。他社 OS への Voice 一式の移植や、全機種での動作保証は行っていない。
 

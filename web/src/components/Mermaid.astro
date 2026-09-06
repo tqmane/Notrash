@@ -1,0 +1,13 @@
+---
+const { code } = Astro.props;
+---
+<pre class="notrash-mermaid">{code}</pre>
+<script>
+  import mermaid from 'mermaid';
+  mermaid.initialize({ startOnLoad: false, securityLevel: 'strict', theme: 'neutral' });
+  mermaid.run({ querySelector: '.notrash-mermaid' });
+</script>
+<style>
+  .notrash-mermaid { overflow-x: auto; background: #fafaf8; color: #101010; padding: 1rem; border-radius: .5rem; }
+  .notrash-mermaid :global(svg) { min-width: 650px; }
+</style>

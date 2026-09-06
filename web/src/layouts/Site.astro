@@ -1,0 +1,21 @@
+---
+import '../../custom.css';
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem('starlight-theme');
+        document.documentElement.classList.toggle('dark', theme === 'dark' || (theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches));
+      } catch {}
+    </script>
+  </head>
+  <body><slot /></body>
+</html>

@@ -1,20 +1,23 @@
-import { readFile, stat } from 'node:fs/promises';
+import { readFile, stat, glob } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const config=JSON.parse(await readFile(path.join(root,'docs.json'),'utf8'));
-const pages=config.navigation.groups.flatMap(group=>group.pages);
-for (const page of pages) {
-  const text=await readFile(path.join(root,page+'.mdx'),'utf8');
+const contentRoot=path.join(root,'src/content/docs');
+let count=0;
+for await (const page of glob('**/*.mdx',{cwd:contentRoot})) {
+  const text=await readFile(path.join(contentRoot,page),'utf8');
+  count++;
   for (const field of ['title','description','keywords']) assert(new RegExp('^'+field+':','m').test(text),`${page}: missing ${field}`);
-  if(page.startsWith('docs/')) assert(!/ユーザーの許可|今回の作業|202\d年\d+月\d+日/.test(text),`${page}: work-log language in user guide`);
-  for (const [,target] of text.matchAll(/\]\(([^)]+)\)/g)) {
+  if(page.split(path.sep)[0]==='docs') assert(!/ユーザーの許可|今回の作業|202\d年\d+月\d+日/.test(text),`${page}: work-log language in user guide`);
+  for (const match of text.matchAll(/\]\(([^)]+)\)|href="([^"]+)"/g)) {
+    const target=match[1] || match[2];
     if(!target.startsWith('/')) { assert(/^https?:/.test(target),`${page}: relative link ${target}`); continue; }
-    const route=decodeURI(target.split('#')[0]).replace(/^\//,'') || 'index';
-    const file=route.match(/\.(png|svg|apk|otf)$/) ? route : route+'.mdx';
-    await stat(path.join(root,file));
+    const route=decodeURI(target.split('#')[0]).replace(/^\//,'');
+    const file=!route ? path.join(root,'src/pages/index.astro')
+      : path.extname(route) ? path.join(root,'public',route) : path.join(contentRoot,route+'.mdx');
+    await stat(file);
   }
 }
-assert(pages.length===11,'Review navigation after changing the page count');
-console.log(`PASS: ${pages.length} pages, metadata, links, guide copy`);
+assert(count>0,'No documentation pages found');
+console.log(`PASS: ${count} documentation pages, metadata, links, guide copy`);

@@ -4,12 +4,14 @@ description: "できることと、最初に確認すること。"
 keywords: [Notrash, Nothing OS, Notrashについて]
 ---
 
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
 Notrashは、Nothing OS向けの非公式な拡張モジュールです。Vector / LSPosed上で動作し、必要な機能をアプリから個別に切り替えられます。
 
-<Columns cols={2}>
-  <Card title="導入する" icon="download" href="/docs/install">APKの入手からスコープ設定まで。</Card>
-  <Card title="対応環境を確認する" icon="smartphone" href="/docs/compatibility">確認済みの端末・OS・アプリの組み合わせ。</Card>
-</Columns>
+<CardGrid>
+  <LinkCard title="導入する" href="/docs/install" description="APKの入手から初期設定まで。" />
+  <LinkCard title="対応環境を確認する" href="/docs/compatibility" description="確認済みの端末・OS・アプリの組み合わせ。" />
+</CardGrid>
 
 ## できること
 

@@ -1,9 +1,9 @@
 /* Hallmark · macrostructure: Split Studio · custom black / white / red brand · pre-emit critique: P4 H5 E4 S5 R4 V4 */
-@import url('/tokens.css');
+@import './tokens.css';
 @font-face { font-family: 'Notrash NType'; src: url('/fonts/ntype82_regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'Notrash Dot'; src: url('/fonts/ndot_55.otf') format('opentype'); font-weight: 400; font-display: swap; }
 html, body { overflow-x: clip; }
-body { font-family: var(--font-body); }
+body { margin: 0; font-family: var(--font-body); }
 .notrash-landing { color: var(--color-ink); background: var(--color-paper); font-family: var(--font-body); line-height: 1.8; width: 100%; }
 .dark .notrash-landing { --color-paper: oklch(15% 0 0); --color-paper-alt: oklch(21% 0 0); --color-ink: oklch(96% 0 0); --color-muted: oklch(75% 0 0); --color-rule: oklch(36% 0 0); }
 .notrash-landing *, .notrash-landing *::before, .notrash-landing *::after { box-sizing: border-box; }
@@ -110,16 +110,6 @@ body { font-family: var(--font-body); }
   .lp-footer { padding-inline: var(--space-2xl); }
 }
 @media (prefers-reduced-motion: reduce) { .notrash-landing *, .notrash-landing *::before, .notrash-landing *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
-/* Wide landing canvas; regular Mintlify pages keep their native documentation layout. */
-body:has(.notrash-landing) #footer { display: none; }
-#content-area :not(pre) > code { overflow-wrap: anywhere; }
-/* The landing page is independent of Willow's article frame and sidebar. */
-body:has(.notrash-landing) #sidebar,
-body:has(.notrash-landing) #navbar { display: none !important; }
-body:has(.notrash-landing) main { padding-top: 0 !important; }
-body:has(.notrash-landing) #content-area { margin: 0 !important; padding: 0 !important; width: 100% !important; }
-body:has(.notrash-landing) #content-area > div,
-body:has(.notrash-landing) #content-area > div > div { max-width: none !important; width: 100% !important; padding: 0 !important; margin: 0 !important; }
 .lp-navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1440px; margin: auto; padding: 1.3rem 1.5rem; border-bottom: 1px solid var(--color-rule); }
 .lp-nav-brand { font-family: var(--font-dot); font-size: 1.15rem; display: inline-flex; align-items: center; gap: 6px; }
 .lp-nav-brand > span { display: inline-block; width: 5px; height: 5px; background: var(--color-accent); border-radius: 50%; }
@@ -134,7 +124,8 @@ body:has(.notrash-landing) #content-area > div > div { max-width: none !importan
 .lp-mode-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .lp-mode-picker button { padding-inline: .7rem; gap: .5rem; }
 @media (min-width: 960px) { .lp-preview-area, .lp-appearance-copy { order: 0; } }
-.notrash-404 { text-align: center; }
+.notrash-404 { text-align: center; min-height: 100svh; padding: 10vh 1.5rem; }
+.notrash-404 h1 { font-size: clamp(1.4rem, 5vw, 2.4rem); margin-block: var(--space-lg); }
 .notrash-404 .notrash-404-code { font-family: var(--font-display); font-size: clamp(5rem, 20vw, 10rem); line-height: 1; letter-spacing: -.06em; margin-block: var(--space-lg); }
 .notrash-404-code span { color: var(--color-accent); }
 .notrash-404 nav { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-lg); margin-top: var(--space-lg); }

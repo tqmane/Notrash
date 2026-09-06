@@ -1,21 +1,29 @@
 {
   "name": "notrash-website",
   "version": "1.0.0",
-  "description": "Notrash landing page and Mintlify Docs / Wiki",
+  "description": "Notrash landing page and Docs / Wiki",
   "license": "GPL-3.0-only",
   "scripts": {
-    "dev": "mint dev --port 3333 --no-open",
-    "validate": "mint validate",
-    "check:links": "mint broken-links",
+    "dev": "astro dev --host 127.0.0.1 --port 3333",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 3333",
     "sync:wiki": "node scripts/sync-wiki.mjs",
     "check:content": "node scripts/check-content.mjs"
   },
-  "type": "commonjs",
-  "devDependencies": {
-    "mint": "4.2.876"
-  },
+  "type": "module",
   "private": true,
   "engines": {
-    "node": "^22.0.0 || ^24.0.0"
+    "node": "24.x"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "7.3.0",
+    "@astrojs/react": "6.0.5",
+    "@astrojs/starlight": "0.42.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "astro": "7.3.1",
+    "mermaid": "11.17.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   }
 }
