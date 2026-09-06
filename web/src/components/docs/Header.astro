@@ -1,0 +1,30 @@
+---
+import Search from '@astrojs/starlight/components/Search.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+const { sidebar, entry } = Astro.locals.starlightRoute;
+const group = sidebar.find(item => item.type === 'group' && item.entries.some(link => link.type === 'link' && link.isCurrent));
+---
+<a class="docs-logo" href="/" aria-label="Notrash ホーム">
+  <img class="logo-light" src="/images/wordmark-dark.svg" alt="Notrash" width="100" height="24" />
+  <img class="logo-dark" src="/images/wordmark-light.svg" alt="Notrash" width="100" height="24" />
+</a>
+<div class="docs-header-actions">
+  <button class="docs-copy" type="button" aria-live="polite"><span aria-hidden="true">ⓘ</span> COPY PAGE <span aria-hidden="true">⌄</span></button>
+  <Search />
+  <ThemeSelect />
+</div>
+<button class="docs-mobile-nav" type="button" popovertarget="docs-navigation" aria-label="ページ一覧を開く">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+  <span>{group?.label}</span><span aria-hidden="true">›</span><strong>{entry.data.title}</strong>
+</button>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.docs-copy');
+  button?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(document.querySelector('main')?.innerText || '');
+      button.textContent = 'COPIED';
+    } catch {
+      button.textContent = 'コピーできませんでした';
+    }
+  });
+</script>

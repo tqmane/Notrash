@@ -1,0 +1,9 @@
+---
+const { entry, sidebar } = Astro.locals.starlightRoute;
+const group = sidebar.find(item => item.type === 'group' && item.entries.some(link => link.type === 'link' && link.isCurrent));
+---
+<header class="docs-page-header">
+  {group && <div class="docs-eyebrow">{group.label}</div>}
+  <h1 id="_top">{entry.data.title}</h1>
+  <p>{entry.data.description}</p>
+</header>

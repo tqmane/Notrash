@@ -10,6 +10,12 @@ captures/
 *.jks
 *.keystore
 
+# Fonts are supplied locally and through Vercel environment variables.
+*.otf
+*.ttf
+*.woff
+*.woff2
+
 # Local configuration and editor files
 .idea/
 *.iml
@@ -24,3 +30,5 @@ __pycache__/
 *.pyc
 *.log
 /verification/
+
+.vercel/

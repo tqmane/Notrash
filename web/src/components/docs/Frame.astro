@@ -1,0 +1,17 @@
+<div class="docs-frame">
+  <header class="docs-header"><slot name="header" /></header>
+  <nav id="docs-navigation" class="docs-navigation" popover aria-label="ページ一覧"><slot name="sidebar" /></nav>
+  <div class="main-frame">
+    <slot />
+    <footer class="docs-footer">
+      <a class="docs-logo" href="/" aria-label="Notrash ホーム"><img class="logo-light" src="/images/wordmark-dark.svg" alt="Notrash" width="100" height="24" /><img class="logo-dark" src="/images/wordmark-light.svg" alt="Notrash" width="100" height="24" /></a>
+      <nav aria-label="フッター"><a href="/">ホーム</a><a href="/docs/install">導入ガイド</a><a href="/docs/compatibility">対応環境</a></nav>
+    </footer>
+  </div>
+</div>
+<script>
+  const navigation = document.querySelector<HTMLElement>('#docs-navigation');
+  const main = document.querySelector<HTMLElement>('.main-frame');
+  navigation?.addEventListener('toggle', () => { if (main) main.inert = navigation.matches(':popover-open'); });
+  matchMedia('(min-width: 1024px)').addEventListener('change', () => navigation?.hidePopover());
+</script>

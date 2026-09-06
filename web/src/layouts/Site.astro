@@ -12,6 +12,7 @@ const { title, description } = Astro.props;
     <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
     <script is:inline>
       try {
+        if (localStorage.getItem('starlight-theme') === null) localStorage.setItem('starlight-theme', 'light');
         const theme = localStorage.getItem('starlight-theme');
         document.documentElement.classList.toggle('dark', theme === 'dark' || (theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches));
       } catch {}

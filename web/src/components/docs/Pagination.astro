@@ -1,0 +1,7 @@
+---
+const { prev, next } = Astro.locals.starlightRoute.pagination;
+---
+<nav class="docs-pagination" aria-label="ページ送り">
+  {prev && <a href={prev.href} rel="prev"><span aria-hidden="true">←</span> {prev.label}</a>}
+  {next && <a href={next.href} rel="next">{next.label} <span aria-hidden="true">→</span></a>}
+</nav>

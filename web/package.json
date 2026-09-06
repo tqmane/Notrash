@@ -5,7 +5,7 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "dev": "astro dev --host 127.0.0.1 --port 3333",
-    "build": "astro build",
+    "build": "node scripts/fonts.mjs && astro build",
     "preview": "astro preview --host 127.0.0.1 --port 3333",
     "sync:wiki": "node scripts/sync-wiki.mjs",
     "check:content": "node scripts/check-content.mjs"

@@ -1,0 +1,11 @@
+---
+const { title, href, description, icon = 'download' } = Astro.props;
+---
+<a class="docs-card not-content" href={href}>
+  <svg class="docs-card-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    {icon === 'smartphone' ? <><rect width="14" height="20" x="5" y="2" rx="2" /><path d="M12 18h.01" /></> : <><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></>}
+  </svg>
+  <span class="docs-card-arrow" aria-hidden="true">↗</span>
+  <h2>{title}</h2>
+  <p>{description}</p>
+</a>

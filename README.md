@@ -30,6 +30,13 @@ VoiceにはOS側の対応実装が必要です。確認済みの環境と範囲�
 
 Android SDK 37、JDK 17以上。
 
+NType / NDotのフォントファイルは含めていません。各自で用意し、ビルド前に次の名前で配置してください。配置したファイルはGitの追跡対象外です。
+
+- `app/src/main/res/font/ntype82_regular.otf`
+- `app/src/main/res/font/ndot_55.otf`
+
+Web用フォントの配置とVercelの設定は [WebのREADME](web/README.md#フォント) を参照してください。
+
 ```powershell
 .\gradlew.bat :app:compileDebugKotlin :app:assembleDebug --no-daemon
 python verification/check_system_voice.py

@@ -1,0 +1,20 @@
+---
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+const { sidebar } = Astro.locals.starlightRoute;
+---
+<div class="docs-navigation-items">
+  {sidebar.map(group => group.type === 'group' && (
+    <section>
+      <h3>{group.label}</h3>
+      <ul>{group.entries.map(item => item.type === 'link' && (
+        <li><a href={item.href} aria-current={item.isCurrent ? 'page' : undefined}>{item.label}</a></li>
+      ))}</ul>
+    </section>
+  ))}
+</div>
+<div class="docs-mobile-theme"><ThemeSelect /></div>
+<div class="docs-navigation-footer">
+  <a class="start" href="/docs/install">はじめる <span aria-hidden="true">↗</span></a>
+  <a href="/docs/overview">DOCS <span aria-hidden="true">↗</span></a>
+  <a href="/wiki/essential-recorder">WIKI <span aria-hidden="true">↗</span></a>
+</div>
