@@ -4,28 +4,26 @@ description: "実機で確認した条件と、確認していない範囲。"
 keywords: [Notrash, Nothing OS, 対応環境]
 ---
 
-## 確認済みの組み合わせ
-
 | 項目 | 確認した値 |
 | --- | --- |
-| 端末 | Nothing Phone (3a) / A059 / Asteroids |
-| Android | Android 16 / API 36 |
-| ビルド | 2606181048 |
+| 端末 | Nothing Phone (3a) / A059 / AsteroidsJPN（Asteroids） |
+| Android | Android 17 / API 37 |
+| ビルド | C5.0-260915-2123 / incremental 2609152123 |
+| セキュリティパッチ | 2026-09-01 |
 | フレームワーク | Vector 2.2（3087）/ API 102 |
 | Notrash | 1.0.3 / versionCode 4 |
-| Nothing Camera | 16.0.01.26.00 / 17.0.00.71.00 |
-| Essential Recorder | 16.0.60 |
-| Essential Space | 2.1.7 |
+| Nothing Settings | 17.000.00-65ae4755-260915 / versionCode 170000 |
+| Nothing Camera | 17.0.00.71.00 / versionCode 170007100 |
+| Essential Recorder | 17.0.0 / versionCode 170000 |
+| Essential Space | 2.2.0 / versionCode 543 |
 
 ## 確認した動作
 
 - シャッター音設定の表示・非表示と、マナーモード中の操作。
 - 本体設定の表示タイミングに純正の「常に表示」が追加され、選択後に画面OFFでDOZEへ移行すること。
-- 純正Essential一覧のVoice入口の表示・非表示。
-- 起動済みRecorderへの設定反映。
-- Gboard下部の黄色いVoiceボタン。OFFで消え、ONで再表示。
-- 4配色と表示設定の保存。文字サイズ1.3での表示。
-- API 102のホットリロード。OSプロセスを再起動せず更新。
+- Notrash 1.0.3の上書きインストールと、Settingsを含むVectorスコープ。
+
+Camera 16.0.01.26.00、Recorder 16.0.60、Space 2.1.7、Android 16での過去の検証結果は各Wikiに残しています。上の現行Recorder / SpaceでVoice一式を再検証した結果ではありません。
 
 ## OS側に必要な実装
 
@@ -35,6 +33,6 @@ Notrashアプリ自体の最小Android APIは26ですが、Voice本体のAPKや�
 
 ## 未確認の範囲
 
-他機種・他OTAの全組み合わせ、全言語の認識と翻訳精度、すべての入力欄への挿入、全撮影モードでの撮影音は網羅していません。音声処理結果の通知は実機で観察しています。
+他機種・他OTAの全組み合わせ、現行Recorder / SpaceでのVoice一式、全言語の認識と翻訳精度、すべての入力欄への挿入、全撮影モードでの撮影音は網羅していません。
 
-[導入ガイド](/docs/install) · [実装の詳細](/wiki/essential-recorder)
+[導入ガイド](/docs/install) · [AODの実装](/wiki/aod) · [Voiceの実装](/wiki/essential-recorder)

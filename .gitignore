@@ -9,6 +9,7 @@ captures/
 *.hprof
 *.jks
 *.keystore
+app/release/
 
 # Fonts are supplied locally and through Vercel environment variables.
 *.otf
