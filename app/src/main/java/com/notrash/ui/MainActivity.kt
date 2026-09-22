@@ -28,6 +28,7 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.CameraAlt
 import androidx.compose.material.icons.outlined.GraphicEq
 import androidx.compose.material.icons.outlined.Contrast
+import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -133,6 +134,9 @@ fun NotrashHomeScreen(
     }
     var essentialVoiceUnlock by remember {
         mutableStateOf(NotrashConfig.isEssentialVoiceUnlockEnabled(context))
+    }
+    var alwaysOnDisplayUnlock by remember {
+        mutableStateOf(NotrashConfig.isAlwaysOnDisplayUnlockEnabled(context))
     }
 
     var applying by remember { mutableStateOf(false) }
@@ -248,6 +252,20 @@ fun NotrashHomeScreen(
                     cameraSoundUnlock = isChecked
                     NotrashConfig.setCameraSoundUnlockEnabled(context, isChecked)
 
+                }
+            )
+        }
+
+        SettingsSectionHeader(title = stringResource(R.string.category_display))
+        SettingsNothingGroup {
+            SettingsToggleEntry(
+                title = stringResource(R.string.pref_always_on_display_title),
+                description = stringResource(R.string.pref_always_on_display_desc),
+                checked = alwaysOnDisplayUnlock,
+                icon = Icons.Outlined.Visibility,
+                onCheckedChange = { isChecked ->
+                    alwaysOnDisplayUnlock = isChecked
+                    NotrashConfig.setAlwaysOnDisplayUnlockEnabled(context, isChecked)
                 }
             )
         }

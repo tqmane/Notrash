@@ -15,8 +15,10 @@ object NotrashConfig {
     const val PREFS_NAME = "notrash_config"
     const val AUTHORITY = "com.notrash.provider"
     const val KEY_CAMERA_SOUND_UNLOCK = "camera_sound_unlock"
+    const val KEY_ALWAYS_ON_DISPLAY_UNLOCK = "always_on_display_unlock"
     const val KEY_ESSENTIAL_VOICE_UNLOCK = "essential_voice_unlock"
     const val DEFAULT_CAMERA_SOUND_UNLOCK = false
+    const val DEFAULT_ALWAYS_ON_DISPLAY_UNLOCK = false
     const val DEFAULT_ESSENTIAL_VOICE_UNLOCK = false
     private const val KEY_HIGH_CONTRAST = "high_contrast"
     private const val KEY_THEME_MODE = "theme_mode"
@@ -79,6 +81,9 @@ object NotrashConfig {
     fun isEssentialVoiceUnlockEnabled(context: Context): Boolean =
         getPrefs(context).getBoolean(KEY_ESSENTIAL_VOICE_UNLOCK, DEFAULT_ESSENTIAL_VOICE_UNLOCK)
 
+    fun isAlwaysOnDisplayUnlockEnabled(context: Context): Boolean =
+        getPrefs(context).getBoolean(KEY_ALWAYS_ON_DISPLAY_UNLOCK, DEFAULT_ALWAYS_ON_DISPLAY_UNLOCK)
+
     fun setCameraSoundUnlockEnabled(context: Context, enabled: Boolean) {
         getPrefs(context).edit().putBoolean(KEY_CAMERA_SOUND_UNLOCK, enabled).apply()
         sync(context)
@@ -86,6 +91,11 @@ object NotrashConfig {
 
     fun setEssentialVoiceUnlockEnabled(context: Context, enabled: Boolean) {
         getPrefs(context).edit().putBoolean(KEY_ESSENTIAL_VOICE_UNLOCK, enabled).apply()
+        sync(context)
+    }
+
+    fun setAlwaysOnDisplayUnlockEnabled(context: Context, enabled: Boolean) {
+        getPrefs(context).edit().putBoolean(KEY_ALWAYS_ON_DISPLAY_UNLOCK, enabled).apply()
         sync(context)
     }
 
@@ -104,6 +114,7 @@ object NotrashConfig {
         settingsSynced = try {
             service?.getRemotePreferences(PREFS_NAME)?.edit()
                 ?.putBoolean(KEY_CAMERA_SOUND_UNLOCK, isCameraSoundUnlockEnabled(context))
+                ?.putBoolean(KEY_ALWAYS_ON_DISPLAY_UNLOCK, isAlwaysOnDisplayUnlockEnabled(context))
                 ?.putBoolean(KEY_ESSENTIAL_VOICE_UNLOCK, isEssentialVoiceUnlockEnabled(context))
                 ?.commit() == true
         } catch (error: RuntimeException) {

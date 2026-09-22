@@ -2,6 +2,7 @@
     <string-array name="xposed_scope">
         <item>com.notrash</item>
         <item>com.nothing.camera</item>
+        <item>com.android.settings</item>
         <item>com.nothing.ntessentialrecorder</item>
         <item>com.nothing.ntessentialspace</item>
         <item>com.nothing.ai.service</item>

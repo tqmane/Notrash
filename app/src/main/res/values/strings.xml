@@ -7,8 +7,11 @@
     <string name="status_active_desc">Settings synced. Restart target apps after changing options.</string>
     <string name="status_inactive_desc">Enable Notrash in LSPosed, then reopen this app.</string>
     <string name="category_camera">Camera</string>
+    <string name="category_display">Display</string>
     <string name="pref_camera_sound_unlock_title">Shutter sound</string>
     <string name="pref_camera_sound_unlock_desc">Remove regional restrictions and keep the sound switch available in silent mode.</string>
+    <string name="pref_always_on_display_title">Always-on display</string>
+    <string name="pref_always_on_display_desc">Add the native Always show timing option under Settings → Lock screen.</string>
     <string name="category_essential">Essential Voice</string>
     <string name="pref_essential_voice_unlock_title">Device compatibility</string>
     <string name="pref_essential_voice_unlock_desc">Remove the device restriction. Requires a Nothing OS build with Essential Voice support.</string>
@@ -29,7 +32,7 @@
     <string name="voice_unavailable">Opening Essential Key first. Return here and try again. Recorder 16.0.60 or a compatible version is required.</string>
     <string name="apply_settings">Restart target apps</string>
     <string name="applying">Applying窶ｦ</string>
-    <string name="apply_settings_desc">Close Camera, Essential Recorder and Essential Space. Then reopen the app you want to use.</string>
+    <string name="apply_settings_desc">Close Settings, Camera, Essential Recorder and Essential Space. Then reopen the app you want to use.</string>
     <string name="apply_success">Target apps closed. Reopen them to apply settings.</string>
     <string name="apply_no_root">Root unavailable. Close and reopen the target apps manually.</string>
     <string name="apply_failed">Could not apply settings: %1$s</string>
@@ -45,7 +48,7 @@
     <string name="module_connected">Module active</string>
     <string name="module_disconnected">Not connected</string>
     <string name="about_features">Features</string>
-    <string name="about_features_value">Camera\nEssential Voice</string>
+    <string name="about_features_value">Camera\nAlways-on display\nEssential Voice</string>
     <string name="category_appearance">Appearance</string>
     <string name="high_contrast_title">High contrast</string>
     <string name="high_contrast_desc">Use red accents and stronger contrast.</string>

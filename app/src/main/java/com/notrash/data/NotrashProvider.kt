@@ -22,6 +22,10 @@ class NotrashProvider : ContentProvider() {
                     NotrashConfig.isCameraSoundUnlockEnabled(context)
                 )
                 bundle.putBoolean(
+                    NotrashConfig.KEY_ALWAYS_ON_DISPLAY_UNLOCK,
+                    NotrashConfig.isAlwaysOnDisplayUnlockEnabled(context)
+                )
+                bundle.putBoolean(
                     NotrashConfig.KEY_ESSENTIAL_VOICE_UNLOCK,
                     NotrashConfig.isEssentialVoiceUnlockEnabled(context)
                 )

@@ -7,8 +7,11 @@
     <string name="status_active_desc">設定を同期しました。変更後は対象アプリを開き直してください。</string>
     <string name="status_inactive_desc">LSPosed で Notrash を有効にして、このアプリを開き直してください。</string>
     <string name="category_camera">カメラ</string>
+    <string name="category_display">ディスプレイ</string>
     <string name="pref_camera_sound_unlock_title">シャッター音</string>
     <string name="pref_camera_sound_unlock_desc">地域による制限を解除し、マナーモード中も音の設定を切り替えられます。</string>
+    <string name="pref_always_on_display_title">常時AOD</string>
+    <string name="pref_always_on_display_desc">本体設定の表示タイミングに純正の「常に表示」を追加します。</string>
     <string name="category_essential">Essential Voice</string>
     <string name="pref_essential_voice_unlock_title">機種制限の解除</string>
     <string name="pref_essential_voice_unlock_desc">機種による制限を解除します。Essential Voice のシステム機能を含む Nothing OS が必要です。</string>
@@ -29,7 +32,7 @@
     <string name="voice_unavailable">先に Essential Key を開きます。戻ってからもう一度お試しください。Recorder 16.0.60 または互換版が必要です。</string>
     <string name="apply_settings">対象アプリを終了</string>
     <string name="applying">反映中…</string>
-    <string name="apply_settings_desc">カメラ・Essential Recorder・Essential Space を終了します。使用するアプリを開き直してください。</string>
+    <string name="apply_settings_desc">設定・カメラ・Essential Recorder・Essential Space を終了します。使用するアプリを開き直してください。</string>
     <string name="apply_success">対象アプリを終了しました。開き直すと設定が反映されます。</string>
     <string name="apply_no_root">root 権限を利用できません。対象アプリを手動で終了して開き直してください。</string>
     <string name="apply_failed">設定の反映に失敗しました: %1$s</string>
@@ -45,7 +48,7 @@
     <string name="module_connected">モジュール有効</string>
     <string name="module_disconnected">未接続</string>
     <string name="about_features">拡張機能</string>
-    <string name="about_features_value">カメラ\nEssential Voice</string>
+    <string name="about_features_value">カメラ\n常時AOD\nEssential Voice</string>
     <string name="category_appearance">表示</string>
     <string name="high_contrast_title">ハイコントラスト</string>
     <string name="high_contrast_desc">赤をアクセントに、文字と操作部をはっきり表示します。</string>

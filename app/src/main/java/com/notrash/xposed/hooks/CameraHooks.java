@@ -59,6 +59,14 @@ public final class CameraHooks {
             }
         }
 
+        // Camera 17.x re-evaluates the regional policy after startup.
+        Class<?> policyEvaluatorClass = findClass(classLoader,
+                "com.nothing.common.setting.ShutterSoundPolicyEvaluator");
+        if (policyEvaluatorClass != null) {
+            hookCameraConditional(module, policyEvaluatorClass, "isCameraSoundForced", false);
+            Log.i(TAG, "ShutterSoundPolicyEvaluator hooked successfully");
+        }
+
         // 3. Hook Util.isInSilentMode -> return false if enabled
         Class<?> utilClass = findClass(classLoader,
                 "com.nothing.common.utils.Util",

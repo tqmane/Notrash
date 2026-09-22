@@ -12,10 +12,10 @@ export const Landing = () => {
       </nav>
       <section className="lp-hero" aria-labelledby="lp-title">
         <div className="lp-hero-copy">
-          <p className="lp-release"><span /> Nothing OS extension · v1.0.2</p>
+          <p className="lp-release"><span /> Nothing OS extension · v1.0.3</p>
           <h1 id="lp-title">NOTRASH<span className="lp-period">.</span></h1>
           <p className="lp-statement">Nothingを、<br />自分の設定で。</p>
-          <p className="lp-lede">カメラのシャッター音から、Essential Voiceまで。<br className="lp-desktop-break" />使いたい機能だけを選ぶ、Nothing OS拡張モジュール。</p>
+          <p className="lp-lede">カメラ、常時AOD、Essential Voiceまで。<br className="lp-desktop-break" />使いたい機能だけを選ぶ、Nothing OS拡張モジュール。</p>
           <div className="lp-actions">
             <a className="lp-button lp-button-primary" href="/docs/install">導入ガイドを読む <span aria-hidden="true">↗</span></a>
             <a className="lp-text-link" href="#features">できることを見る <span aria-hidden="true">↓</span></a>

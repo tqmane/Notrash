@@ -32,7 +32,11 @@
 
 ### カメラ
 
-[CameraHooks](app/src/main/java/com/notrash/xposed/hooks/CameraHooks.java) は `Utils.initialize` の完了後、ON のときだけ音の強制フラグと設定のサポートを変更する。`pref_shutter_sound_key` の Preference の操作禁止も解除する。起動時フィールドの復元にはカメラを終了して開き直す。
+[CameraHooks](app/src/main/java/com/notrash/xposed/hooks/CameraHooks.java) は `Utils.initialize` の完了後、ON のときだけ音の強制フラグと設定のサポートを変更する。17.x の `ShutterSoundPolicyEvaluator` による起動後の再評価も同じ設定で解除し、16.x の既存経路は維持する。`pref_shutter_sound_key` の Preference の操作禁止も解除する。起動時フィールドの復元にはカメラを終了して開き直す。
+
+### 常時 AOD
+
+[SettingsHooks](app/src/main/java/com/notrash/xposed/hooks/SettingsHooks.java) は Nothing Settings の `NtFeaturesUtils.isSupport(int[])` で `NTF_ALL_DAY_AOD` だけを ON 時に true として扱う。本体設定の表示タイミングに純正の「常に表示」が追加され、選択後の `aod_display_mode=0` や表示処理は純正実装へ任せる。
 
 ### Recorder
 

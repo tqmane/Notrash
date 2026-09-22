@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const pages = [
-  ['camera', 'Nothing Cameraの解析', '16.0.01.26.00のシャッター音制御と、Notrashのフック。'],
+  ['camera', 'Nothing Cameraの解析', '16.x / 17.xのシャッター音制御と、Notrashのフック。'],
   ['essential-recorder', 'Essential Recorderの解析', '16.0.60のVoice本体と、OSのキーボード連携。'],
   ['essential-space', 'Essential Spaceの解析', '2.1.7の構成、AIサービス、Voiceとの関係。']
 ];

@@ -11,6 +11,7 @@ import com.notrash.xposed.hooks.CameraHooks;
 import com.notrash.xposed.hooks.EssentialVoiceHooks;
 import com.notrash.xposed.hooks.SystemUIHooks;
 import com.notrash.xposed.hooks.SystemServerHooks;
+import com.notrash.xposed.hooks.SettingsHooks;
 
 public class NotrashModule extends XposedModule {
 
@@ -41,6 +42,8 @@ public class NotrashModule extends XposedModule {
         // Options are read at invocation time; loading the module does not enable them.
         if ("com.nothing.camera".equals(packageName)) {
             CameraHooks.hook(this, classLoader);
+        } else if ("com.android.settings".equals(packageName)) {
+            SettingsHooks.hook(this, classLoader);
         } else if ("com.nothing.ntessentialrecorder".equals(packageName)) {
             EssentialVoiceHooks.hookRecorder(this, classLoader);
         } else if ("com.nothing.ntessentialspace".equals(packageName) || "com.nothing.ai.service".equals(packageName)) {

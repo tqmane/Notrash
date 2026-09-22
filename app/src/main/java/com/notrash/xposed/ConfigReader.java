@@ -30,7 +30,8 @@ public final class ConfigReader {
         try {
             preferences = module.getRemotePreferences("notrash_config");
             Log.i("Notrash_Config", "Framework settings connected: camera="
-                    + isCameraSoundUnlockEnabled(null) + ", voice="
+                    + isCameraSoundUnlockEnabled(null) + ", aod="
+                    + isAlwaysOnDisplayUnlockEnabled() + ", voice="
                     + isEssentialVoiceUnlockEnabled(null));
         } catch (RuntimeException error) {
             preferences = null;
@@ -44,6 +45,10 @@ public final class ConfigReader {
 
     public static boolean isEssentialVoiceUnlockEnabled(Context context) {
         return getBoolean("essential_voice_unlock");
+    }
+
+    public static boolean isAlwaysOnDisplayUnlockEnabled() {
+        return getBoolean("always_on_display_unlock");
     }
 
     private static boolean getBoolean(String key) {

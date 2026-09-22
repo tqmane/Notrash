@@ -12,7 +12,8 @@ object ShellUtils {
     }
 
     suspend fun restartTargetApps(): Result = runRootCommand(
-        "am force-stop com.nothing.camera && am force-stop com.nothing.ntessentialrecorder && " +
+        "am force-stop com.nothing.camera && am force-stop com.android.settings && " +
+            "am force-stop com.nothing.ntessentialrecorder && " +
             "am force-stop com.nothing.ntessentialspace"
     )
 
