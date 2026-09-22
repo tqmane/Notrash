@@ -1,0 +1,58 @@
+# Nothing Settings 17 の常時 AOD 解析
+
+対象パッケージは `com.android.settings`。Notrash は Nothing Settings に含まれる純正の「常に表示」を、AOD の表示タイミングへ追加する。AOD や SystemUI 自体は置き換えない。
+
+## 解析対象
+
+| 項目 | 値 |
+| --- | --- |
+| APK | `/system_ext/priv-app/NothingSettings/NothingSettings.apk` |
+| versionName / versionCode | `17.000.00-65ae4755-260915` / `170000` |
+| 最小 / 対象 Android API | `37 / 37` |
+| 実機 | A059 / Asteroids、Android 17 |
+| SHA-256 | `e60ff65f62fc27bb340f042686d4d91b1e9f6b8a67cf4fdc38b6ca798d1c9c36` |
+
+解析・実機確認日: 2026-09-23。
+
+## 純正実装
+
+`AodDisplayModeFragment` の `AodModeController` は、対応する Nothing feature が有効な選択肢だけを生成する。
+
+| feature | 画面の選択肢 | `aod_display_mode` |
+| --- | --- | --- |
+| `NTF_TAP_AOD` | タップして表示 | `2` |
+| `NTF_ALL_DAY_AOD` | 常に表示 | `0` |
+| `NTF_SCHEDULE_AOD` | スケジュール | `1` |
+
+検証端末ではタップ表示とスケジュールだけが対応扱いで、`NTF_ALL_DAY_AOD` が false のため「常に表示」が生成されない。機能本体と文言、選択後の処理は APK と SystemUI に残っている。
+
+## Notrash の変更
+
+実装: [SettingsHooks.java](../app/src/main/java/com/notrash/xposed/hooks/SettingsHooks.java)
+
+1. `com.android.settings` をモジュールのスコープへ追加する。
+2. Nothing framework の `NtFeatures.NTF_ALL_DAY_AOD` を実行時に取得する。
+3. `NtFeaturesUtils.isSupport(int[])` がその feature を問い合わせた場合だけ、Notrash の設定が ON なら true を返す。
+4. その他の feature 判定と、OFF 時の処理は純正へ渡す。
+
+Notrash は `aod_display_mode` や `doze_always_on` を直接変更しない。「常に表示」を選んだ後の値の保存、警告、低電力表示は純正実装が担当する。
+
+## 実機で確認したこと
+
+- Notrash OFF → 「タップして表示」「スケジュール」の2項目。
+- Notrash ON → 純正の「常に表示」が加わり、3項目になる。
+- 「常に表示」を選ぶと `aod_display_mode=0` になり、画面OFF後に `DOZE` へ移行する。
+- 検証後は元の `aod_display_mode=2`、`doze_always_on=1` に復元した。
+- 本体と `system_server` は再起動していない。
+
+## 解析元
+
+ワークスペース直下の `decompiled_nothing_settings_17/sources/`:
+
+- `com/nothing/settings/display/aod/AodDisplayModeFragment.java`
+- `com/nothing/settings/display/aod/AodDisplayTapScreenPreferenceController.java`
+- `hj/j.java`: 3つの表示モードと feature 判定。
+- `hj/i.java`: `aod_display_mode` の読み書き。
+- framework の `com/nothing/NtFeatures.java` / `NtFeaturesUtils.java`。
+
+[全体の導入手順](../README.md) · [カメラ](camera.md) · [Essential Recorder](essential-recorder.md)

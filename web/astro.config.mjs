@@ -35,9 +35,9 @@ export default defineConfig({
       sidebar: [
         { label: 'Notrash', items: [{ label: 'Notrash — Nothing OS を、自分の設定で。', link: '/' }, 'docs/overview'] },
         { label: 'はじめる', items: ['docs/install', 'docs/compatibility'] },
-        { label: '使い方', items: ['docs/camera', 'docs/essential-voice', 'docs/appearance'] },
+        { label: '使い方', items: ['docs/camera', 'docs/aod', 'docs/essential-voice', 'docs/appearance'] },
         { label: '困ったとき', items: ['docs/troubleshooting'] },
-        { label: 'Wiki · 実装を読む', items: ['wiki/camera', 'wiki/essential-recorder', 'wiki/essential-space'] },
+        { label: 'Wiki · 実装を読む', items: ['wiki/camera', 'wiki/aod', 'wiki/essential-recorder', 'wiki/essential-space'] },
       ],
     }),
   ],

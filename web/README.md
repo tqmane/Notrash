@@ -7,6 +7,8 @@ Nothing風のLPと、Astro / StarlightのDocs / Wiki。Vercelへ静的サイト�
 | `/` | LP、機能紹介、4配色の外観プレビュー |
 | `/docs/overview` | 使い方の入口 |
 | `/docs/install` | ダウンロードと導入 |
+| `/docs/aod` | 常時AODの使い方 |
+| `/wiki/aod` | Nothing SettingsのAOD実装解析 |
 | `/wiki/essential-recorder` | APKとOS側の実装解説 |
 
 ## ローカルで開く

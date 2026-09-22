@@ -71,7 +71,7 @@ export const Landing = () => {
         <div className="lp-docs-list">
           <a href="/docs/install"><div><h3>はじめる</h3><p>ダウンロード、対応環境、初期設定。</p></div><span aria-hidden="true">↗</span></a>
           <a href="/docs/troubleshooting"><div><h3>困ったとき</h3><p>有効なのに使えない。ボタンが出ない。</p></div><span aria-hidden="true">↗</span></a>
-          <a href="/wiki/essential-recorder"><div><h3>実装を読む</h3><p>純正3アプリの解析と、Notrashの仕組み。</p></div><span aria-hidden="true">↗</span></a>
+          <a href="/wiki/aod"><div><h3>実装を読む</h3><p>純正アプリの解析と、Notrashの仕組み。</p></div><span aria-hidden="true">↗</span></a>
         </div>
       </section>
       <footer className="lp-footer"><span>NOTRASH<span className="lp-period">.</span></span><p>Nothing OS向けの非公式拡張モジュール。</p><a href="/docs/compatibility">対応環境を確認 ↗</a></footer>

@@ -1,12 +1,12 @@
 # Notrash の内部構成
 
-アプリ別の解析: [カメラ](docs/camera.md) / [Essential Recorder と OS の Voice](docs/essential-recorder.md) / [Essential Space](docs/essential-space.md)。APK のバージョン、SHA-256、解析元と実機確認範囲は各ページに記載。
+アプリ別の解析: [カメラ](docs/camera.md) / [常時 AOD](docs/aod.md) / [Essential Recorder と OS の Voice](docs/essential-recorder.md) / [Essential Space](docs/essential-space.md)。APK のバージョン、SHA-256、解析元と実機確認範囲は各ページに記載。
 
 ## 設定共有
 
 [NotrashConfig](app/src/main/java/com/notrash/data/NotrashConfig.kt) がアプリの設定を保存し、libxposed Service の `getRemotePreferences("notrash_config")` に同期する。フック側の [ConfigReader](app/src/main/java/com/notrash/xposed/ConfigReader.java) はフレームワークの設定を参照する。
 
-- `camera_sound_unlock` / `essential_voice_unlock` の初期値はいずれも false。
+- `camera_sound_unlock` / `always_on_display_unlock` / `essential_voice_unlock` の初期値はいずれも false。
 - 未設定・取得失敗は OFF として扱う。
 - 旧版の `/data/local/tmp/notrash_config.json` は新版では読み取らず、root 経由の JSON 出力もしない。
 - UI の接続表示は Service の接続状態で更新する。自己フックで有効判定を作らない。
@@ -21,7 +21,7 @@
 [NotrashModule](app/src/main/java/com/notrash/xposed/NotrashModule.java):
 
 - `onModuleLoaded`: フレームワークの共有設定を取得。
-- `onPackageReady`: そのプロセスの最初のパッケージだけを対象に、カメラ / Recorder / Space / SystemUI のフックを登録。
+- `onPackageReady`: そのプロセスの最初のパッケージだけを対象に、Settings / カメラ / Recorder / Space / SystemUI のフックを登録。
 - `onSystemServerStarting`: `SystemServerHooks` を登録。
 - `onHotReloading`: OS 側だけ更新を受け入れる。設定リスナーを解除し、OS の ClassLoader と生成済みの純正 Voice サービスを引き継ぐ。
 - `onHotReloaded`: 古いフックを外して新しいフックと設定リスナーを登録。アプリ側は通常のプロセス再起動で更新する。

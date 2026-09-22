@@ -14,7 +14,7 @@ Nothing OS 向けの拡張モジュール。使いたい機能をアプリから
 
 1. libxposed API 102対応のVector / LSPosedを用意します。
 2. [最新リリース](https://github.com/tqmane/Notrash/releases/latest)をインストールし、Vector / LSPosedでNotrashを有効にして推奨スコープを適用します。
-3. Notrashで使いたい機能をONにします。カメラは終了して開き直してください。
+3. Notrashで使いたい機能をONにします。カメラと設定アプリは終了して開き直してください。
 
 Nothing Phone (3a)でBootloader Unlockせずに使う方法は、[Root-My-Device v1.0](https://github.com/tqmane/Root-My-Device/releases/tag/v1.0)を参照してください。対象ビルドなどの条件はリンク先に記載されています。
 
@@ -22,6 +22,7 @@ Nothing Phone (3a)でBootloader Unlockせずに使う方法は、[Root-My-Device
 
 - [Webサイト・Docs / Wiki](web/README.md)
 - [カメラの解析](docs/camera.md)
+- [Nothing SettingsのAOD解析](docs/aod.md)
 - [Essential RecorderとOSのVoice連携](docs/essential-recorder.md)
 - [Essential Spaceの解析](docs/essential-space.md)
 - [Notrashの内部構成](SPEC.md)
@@ -50,7 +51,7 @@ APK: `app/build/outputs/apk/debug/app-debug.apk`。
 
 アイコンの原本は `app/src/main/res/drawable/ic_notrash_foreground.xml`。PNGとクイック設定用の書き出しは `python tools/generate-icons.py` で揃えます。
 
-表示設定は保存されます。「対象アプリを終了」はカメラ・Recorder・Spaceのみを終了し、端末やOSプロセスを再起動しません。
+表示設定は保存されます。「対象アプリを終了」は設定・カメラ・Recorder・Spaceのみを終了し、端末やOSプロセスを再起動しません。
 
 ## ライセンス
 

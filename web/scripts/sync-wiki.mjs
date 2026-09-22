@@ -3,11 +3,12 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const pages = [
+  ['aod', 'Nothing SettingsのAOD解析', 'Nothing Settings 17の表示モードと、常時AODのフック。'],
   ['camera', 'Nothing Cameraの解析', '16.x / 17.xのシャッター音制御と、Notrashのフック。'],
   ['essential-recorder', 'Essential Recorderの解析', '16.0.60のVoice本体と、OSのキーボード連携。'],
   ['essential-space', 'Essential Spaceの解析', '2.1.7の構成、AIサービス、Voiceとの関係。']
 ];
-const routes = { '../README.md':'/docs/overview', 'camera.md':'/wiki/camera', 'essential-recorder.md':'/wiki/essential-recorder', 'essential-space.md':'/wiki/essential-space' };
+const routes = { '../README.md':'/docs/overview', 'aod.md':'/wiki/aod', 'camera.md':'/wiki/camera', 'essential-recorder.md':'/wiki/essential-recorder', 'essential-space.md':'/wiki/essential-space' };
 for (const [slug,title,description] of pages) {
   let body = await readFile(path.join(root, '..', 'docs', slug + '.md'), 'utf8');
   body = body.replace(/^# .*\r?\n/, '').trim();
@@ -22,4 +23,4 @@ for (const [slug,title,description] of pages) {
   const imports = hasDiagram ? "import Mermaid from '../../../components/Mermaid.astro';\n\n" : '';
   await writeFile(path.join(root, 'src/content/docs/wiki', slug + '.mdx'), `---\ntitle: "${title}"\ndescription: "${description}"\nkeywords: [Notrash, Wiki, ${slug}]\n---\n\n${imports}${body}\n`);
 }
-console.log('Synced 3 wiki pages from the Android project documentation.');
+console.log(`Synced ${pages.length} wiki pages from the Android project documentation.`);
