@@ -31,7 +31,9 @@ jobs:
       - name: Install Android 17 SDK
         shell: bash
         run: |
-          sdkmanager --channel=3 "platforms;android-37"
+          sdkmanager \
+            "platforms;android-37.0" \
+            "build-tools;37.0.0"
 
       - name: Restore signing keystore
         shell: bash
