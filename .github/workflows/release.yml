@@ -1,0 +1,95 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Restore signing keystore
+        shell: bash
+        run: |
+          printf '%s' '${{ secrets.ANDROID_KEYSTORE_B64 }}' \
+            | base64 --decode \
+            > "$RUNNER_TEMP/notrash-release.jks"
+
+      - name: Read version
+        id: version
+        shell: bash
+        run: |
+          VERSION_CODE=$(grep 'versionCode =' app/build.gradle.kts \
+            | grep -oE '[0-9]+' \
+            | head -1)
+
+          VERSION_NAME=$(grep 'versionName =' app/build.gradle.kts \
+            | sed -E 's/.*"([^"]+)".*/\1/' \
+            | head -1)
+
+          echo "code=$VERSION_CODE" >> "$GITHUB_OUTPUT"
+          echo "name=$VERSION_NAME" >> "$GITHUB_OUTPUT"
+
+          echo "Version code: $VERSION_CODE"
+          echo "Version name: $VERSION_NAME"
+
+      - name: Build signed release APK
+        env:
+          ANDROID_KEYSTORE_FILE: ${{ runner.temp }}/notrash-release.jks
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :app:assembleRelease --no-daemon
+
+      - name: Rename APK
+        shell: bash
+        run: |
+          cp app/build/outputs/apk/release/app-release.apk \
+            "Notrash-${{ steps.version.outputs.name }}.apk"
+
+      - name: Release to tqmane/Notrash
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            "Notrash-${{ steps.version.outputs.name }}.apk" \
+            --repo tqmane/Notrash \
+            --title "Notrash ${{ steps.version.outputs.name }}" \
+            --generate-notes
+
+      - name: Release to Xposed Modules Repository
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.XPOSED_REPO_TOKEN }}
+        shell: bash
+        run: |
+          XPOSED_TAG="${{ steps.version.outputs.code }}-${{ steps.version.outputs.name }}"
+
+          gh release create "$XPOSED_TAG" \
+            "Notrash-${{ steps.version.outputs.name }}.apk" \
+            --repo Xposed-Modules-Repo/dev.tqmane.notrash \
+            --target main \
+            --title "${{ steps.version.outputs.name }}" \
+            --notes "Source code and full changelog: https://github.com/tqmane/Notrash/releases/tag/${GITHUB_REF_NAME}"
