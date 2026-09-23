@@ -26,7 +26,12 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          packages: "platform-tools platforms;android-37 build-tools;37.0.0"
+          packages: "platform-tools"
+
+      - name: Install Android 17 SDK
+        shell: bash
+        run: |
+          sdkmanager --channel=3 "platforms;android-37"
 
       - name: Restore signing keystore
         shell: bash
