@@ -26,21 +26,10 @@ npm run dev
 
 ## フォント
 
-NType / NDotは各自で用意し、ローカルでは次の名前で配置してください。フォント本体はGitとVercelへのソースアップロードから除外しています。
+NType / NDotは各自で用意し、ローカルでは次の名前で配置してください。フォント本体はGitのソースアップロードから除外しています。
 
 - `public/fonts/ntype82_regular.otf`
 - `public/fonts/ndot_55.otf`
-
-Vercelでは、フォントをgzip圧縮したBase64を環境変数へ登録します。`web/` で次を実行すると、対応する値が出力されます。
-
-```sh
-node scripts/fonts.mjs encode NTYPE_FONT_GZIP_BASE64
-node scripts/fonts.mjs encode NDOT_FONT_GZIP_BASE64
-```
-
-Vercelの **Project Settings → Environment Variables** に、上記の変数名と出力された値をそれぞれ登録してください。ProductionとPreviewの両方を対象にし、変更後に再デプロイします。値はソースファイルに貼り付けないでください。
-
-ビルド時にフォントを復元し、サイト自身の `/fonts/…` から読み込みます。外部のフォント配信サービスは使いません。Web表示のため、公開サイトではフォントのURLからファイルを取得できます。
 
 ローカルの既存フォントは削除・上書きしません。環境変数のフォントと一致しない場合はビルドを停止します。
 

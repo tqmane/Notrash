@@ -39,7 +39,7 @@ NType / NDotのフォントファイルは含めていません。各自で用�
 - `app/src/main/res/font/ntype82_regular.otf`
 - `app/src/main/res/font/ndot_55.otf`
 
-Web用フォントの配置とVercelの設定は [WebのREADME](web/README.md#フォント) を参照してください。
+Web用フォントの配置の設定は [WebのREADME](web/README.md#フォント) を参照してください。
 
 ```powershell
 .\gradlew.bat :app:compileDebugKotlin :app:assembleDebug --no-daemon
