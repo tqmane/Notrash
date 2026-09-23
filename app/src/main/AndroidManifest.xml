@@ -21,7 +21,7 @@
 
         <provider
             android:name="com.notrash.data.NotrashProvider"
-            android:authorities="com.notrash.provider"
+            android:authorities="com.tqmane.notrash.provider"
             android:exported="true"
             android:multiprocess="false" />
 

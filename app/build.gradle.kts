@@ -9,7 +9,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.notrash"
+        applicationId = "com.tqmane.notrash"
         minSdk = 26
         targetSdk = 35
         versionCode = 5
