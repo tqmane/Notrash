@@ -1,4 +1,4 @@
-package com.notrash.util
+package dev.tqmane.notrash.util
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

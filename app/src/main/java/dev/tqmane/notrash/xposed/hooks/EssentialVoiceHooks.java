@@ -1,4 +1,4 @@
-package com.notrash.xposed.hooks;
+package dev.tqmane.notrash.xposed.hooks;
 
 import android.app.Application;
 import android.content.ComponentName;
@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import java.lang.reflect.Method;
-import com.notrash.xposed.ConfigReader;
+import dev.tqmane.notrash.xposed.ConfigReader;
 import io.github.libxposed.api.XposedInterface;
 
 public final class EssentialVoiceHooks {

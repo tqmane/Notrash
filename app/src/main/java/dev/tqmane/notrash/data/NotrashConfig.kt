@@ -1,4 +1,4 @@
-package com.notrash.data
+package dev.tqmane.notrash.data
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -13,7 +13,7 @@ import io.github.libxposed.service.XposedServiceHelper
 
 object NotrashConfig {
     const val PREFS_NAME = "notrash_config"
-    const val AUTHORITY = "com.tqmane.notrash.provider"
+    const val AUTHORITY = "dev.tqmane.notrash.provider"
     const val KEY_CAMERA_SOUND_UNLOCK = "camera_sound_unlock"
     const val KEY_ALWAYS_ON_DISPLAY_UNLOCK = "always_on_display_unlock"
     const val KEY_BATTERY_INFORMATION_UNLOCK = "battery_information_unlock"

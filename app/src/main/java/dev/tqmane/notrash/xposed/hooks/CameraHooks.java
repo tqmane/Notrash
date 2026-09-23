@@ -1,4 +1,4 @@
-package com.notrash.xposed.hooks;
+package dev.tqmane.notrash.xposed.hooks;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import io.github.libxposed.api.XposedInterface;
-import com.notrash.xposed.ConfigReader;
+import dev.tqmane.notrash.xposed.ConfigReader;
 
 public final class CameraHooks {
 

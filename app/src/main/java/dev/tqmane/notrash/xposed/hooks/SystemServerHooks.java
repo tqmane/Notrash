@@ -1,7 +1,7 @@
-package com.notrash.xposed.hooks;
+package dev.tqmane.notrash.xposed.hooks;
 
 import android.util.Log;
-import com.notrash.xposed.ConfigReader;
+import dev.tqmane.notrash.xposed.ConfigReader;
 import io.github.libxposed.api.XposedInterface;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

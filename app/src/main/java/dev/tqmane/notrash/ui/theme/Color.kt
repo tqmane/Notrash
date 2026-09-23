@@ -1,4 +1,4 @@
-package com.notrash.ui.theme
+package dev.tqmane.notrash.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

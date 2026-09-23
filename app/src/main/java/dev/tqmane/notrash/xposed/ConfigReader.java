@@ -1,4 +1,4 @@
-package com.notrash.xposed;
+package dev.tqmane.notrash.xposed;
 
 import android.content.Context;
 import android.content.SharedPreferences;

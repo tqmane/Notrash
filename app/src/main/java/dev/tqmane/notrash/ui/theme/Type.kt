@@ -1,4 +1,4 @@
-package com.notrash.ui.theme
+package dev.tqmane.notrash.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.notrash.R
+import dev.tqmane.notrash.R
 
 val NTypeFontFamily = FontFamily(Font(R.font.ntype82_regular))
 val NothingDotFontFamily: FontFamily = runCatching {

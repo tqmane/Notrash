@@ -1,4 +1,4 @@
-package com.notrash.ui
+package dev.tqmane.notrash.ui
 
 import android.os.Bundle
 import android.widget.Toast
@@ -52,18 +52,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.notrash.R
-import com.notrash.data.NotrashConfig
-import com.notrash.ui.components.SettingsActionEntry
-import com.notrash.ui.components.SettingsNothingGroup
-import com.notrash.ui.components.SettingsSectionHeader
-import com.notrash.ui.components.SettingsToggleEntry
-import com.notrash.ui.theme.NothingDotFontFamily
-import com.notrash.ui.theme.NTypeFontFamily
-import com.notrash.ui.theme.NothingRed
-import com.notrash.ui.theme.NotrashTheme
-import com.notrash.ui.theme.StatusGreen
-import com.notrash.util.ShellUtils
+import dev.tqmane.notrash.R
+import dev.tqmane.notrash.data.NotrashConfig
+import dev.tqmane.notrash.ui.components.SettingsActionEntry
+import dev.tqmane.notrash.ui.components.SettingsNothingGroup
+import dev.tqmane.notrash.ui.components.SettingsSectionHeader
+import dev.tqmane.notrash.ui.components.SettingsToggleEntry
+import dev.tqmane.notrash.ui.theme.NothingDotFontFamily
+import dev.tqmane.notrash.ui.theme.NTypeFontFamily
+import dev.tqmane.notrash.ui.theme.NothingRed
+import dev.tqmane.notrash.ui.theme.NotrashTheme
+import dev.tqmane.notrash.ui.theme.StatusGreen
+import dev.tqmane.notrash.util.ShellUtils
 import androidx.core.view.WindowCompat
 import kotlinx.coroutines.launch
 

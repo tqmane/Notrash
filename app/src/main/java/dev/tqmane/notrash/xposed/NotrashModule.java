@@ -1,4 +1,4 @@
-package com.notrash.xposed;
+package dev.tqmane.notrash.xposed;
 
 import android.util.Log;
 
@@ -7,11 +7,11 @@ import androidx.annotation.NonNull;
 import io.github.libxposed.api.XposedModule;
 import io.github.libxposed.api.XposedModuleInterface;
 
-import com.notrash.xposed.hooks.CameraHooks;
-import com.notrash.xposed.hooks.EssentialVoiceHooks;
-import com.notrash.xposed.hooks.SystemUIHooks;
-import com.notrash.xposed.hooks.SystemServerHooks;
-import com.notrash.xposed.hooks.SettingsHooks;
+import dev.tqmane.notrash.xposed.hooks.CameraHooks;
+import dev.tqmane.notrash.xposed.hooks.EssentialVoiceHooks;
+import dev.tqmane.notrash.xposed.hooks.SystemUIHooks;
+import dev.tqmane.notrash.xposed.hooks.SystemServerHooks;
+import dev.tqmane.notrash.xposed.hooks.SettingsHooks;
 
 public class NotrashModule extends XposedModule {
 

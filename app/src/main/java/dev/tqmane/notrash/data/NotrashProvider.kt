@@ -1,4 +1,4 @@
-package com.notrash.data
+package dev.tqmane.notrash.data
 
 import android.content.ContentProvider
 import android.content.ContentValues

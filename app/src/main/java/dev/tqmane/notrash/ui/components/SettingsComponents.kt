@@ -1,4 +1,4 @@
-package com.notrash.ui.components
+package dev.tqmane.notrash.ui.components
 
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.ui.semantics.Role
@@ -20,8 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.notrash.ui.theme.NothingRed
-import com.notrash.ui.theme.NothingDotFontFamily
+import dev.tqmane.notrash.ui.theme.NothingRed
+import dev.tqmane.notrash.ui.theme.NothingDotFontFamily
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowForward

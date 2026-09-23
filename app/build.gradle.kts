@@ -5,11 +5,11 @@ plugins {
 
 
 android {
-    namespace = "com.notrash"
+    namespace = "dev.tqmane.notrash"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.tqmane.notrash"
+        applicationId = "dev.tqmane.notrash"
         minSdk = 26
         targetSdk = 35
         versionCode = 5

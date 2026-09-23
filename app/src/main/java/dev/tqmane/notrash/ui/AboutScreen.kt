@@ -1,4 +1,4 @@
-package com.notrash.ui
+package dev.tqmane.notrash.ui
 
 import android.os.Build
 import androidx.compose.foundation.Image
@@ -29,10 +29,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.notrash.R
-import com.notrash.data.NotrashConfig
-import com.notrash.ui.theme.NothingDotFontFamily
-import com.notrash.ui.theme.NothingRed
+import dev.tqmane.notrash.R
+import dev.tqmane.notrash.data.NotrashConfig
+import dev.tqmane.notrash.ui.theme.NothingDotFontFamily
+import dev.tqmane.notrash.ui.theme.NothingRed
 
 @Composable
 fun AboutScreen(onBack: () -> Unit, isModuleActive: Boolean) {

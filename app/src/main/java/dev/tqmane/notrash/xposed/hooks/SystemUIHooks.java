@@ -1,4 +1,4 @@
-package com.notrash.xposed.hooks;
+package dev.tqmane.notrash.xposed.hooks;
 
 import io.github.libxposed.api.XposedInterface;
 
