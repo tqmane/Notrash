@@ -6,7 +6,7 @@
 
 [NotrashConfig](app/src/main/java/com/notrash/data/NotrashConfig.kt) がアプリの設定を保存し、libxposed Service の `getRemotePreferences("notrash_config")` に同期する。フック側の [ConfigReader](app/src/main/java/com/notrash/xposed/ConfigReader.java) はフレームワークの設定を参照する。
 
-- `camera_sound_unlock` / `always_on_display_unlock` / `essential_voice_unlock` の初期値はいずれも false。
+- `camera_sound_unlock` / `always_on_display_unlock` / `battery_information_unlock` / `essential_voice_unlock` の初期値はいずれも false。
 - 未設定・取得失敗は OFF として扱う。
 - 旧版の `/data/local/tmp/notrash_config.json` は新版では読み取らず、root 経由の JSON 出力もしない。
 - UI の接続表示は Service の接続状態で更新する。自己フックで有効判定を作らない。
@@ -37,6 +37,10 @@
 ### 常時 AOD
 
 [SettingsHooks](app/src/main/java/com/notrash/xposed/hooks/SettingsHooks.java) は Nothing Settings の `NtFeaturesUtils.isSupport(int[])` で `NTF_ALL_DAY_AOD` だけを ON 時に true として扱う。本体設定の表示タイミングに純正の「常に表示」が追加され、選択後の `aod_display_mode=0` や表示処理は純正実装へ任せる。
+
+### バッテリー情報
+
+同じ `SettingsHooks` は Nothing Settings の `tj.c.a()` にある地域・機能判定を、`battery_information_unlock` が ON のときだけ解除する。設定の「バッテリー」に純正のバッテリー情報項目が現れ、Battery Information Activity と Stability HAL は Nothing OS の実装を使う。
 
 ### Recorder
 

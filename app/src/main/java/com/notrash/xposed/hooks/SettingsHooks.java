@@ -31,5 +31,17 @@ public final class SettingsHooks {
         } catch (Throwable error) {
             Log.e(TAG, "Failed to hook NTF_ALL_DAY_AOD", error);
         }
+
+        try {
+            Class<?> batteryInformationPolicy = classLoader.loadClass("tj.c");
+            Method isAvailable = batteryInformationPolicy.getDeclaredMethod("a");
+            module.hook(isAvailable).intercept(chain -> {
+                if (ConfigReader.isBatteryInformationUnlockEnabled()) return true;
+                return chain.proceed();
+            });
+            Log.i(TAG, "Battery information availability hooked successfully");
+        } catch (Throwable error) {
+            Log.e(TAG, "Failed to hook battery information availability", error);
+        }
     }
 }

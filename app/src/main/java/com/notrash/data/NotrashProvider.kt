@@ -26,6 +26,10 @@ class NotrashProvider : ContentProvider() {
                     NotrashConfig.isAlwaysOnDisplayUnlockEnabled(context)
                 )
                 bundle.putBoolean(
+                    NotrashConfig.KEY_BATTERY_INFORMATION_UNLOCK,
+                    NotrashConfig.isBatteryInformationUnlockEnabled(context)
+                )
+                bundle.putBoolean(
                     NotrashConfig.KEY_ESSENTIAL_VOICE_UNLOCK,
                     NotrashConfig.isEssentialVoiceUnlockEnabled(context)
                 )

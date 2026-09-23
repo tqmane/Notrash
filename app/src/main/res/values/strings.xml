@@ -8,10 +8,13 @@
     <string name="status_inactive_desc">Enable Notrash in LSPosed, then reopen this app.</string>
     <string name="category_camera">Camera</string>
     <string name="category_display">Display</string>
+    <string name="category_battery">Battery</string>
     <string name="pref_camera_sound_unlock_title">Shutter sound</string>
     <string name="pref_camera_sound_unlock_desc">Remove regional restrictions and keep the sound switch available in silent mode.</string>
     <string name="pref_always_on_display_title">Always-on display</string>
     <string name="pref_always_on_display_desc">Add the native Always show timing option under Settings → Lock screen.</string>
+    <string name="pref_battery_information_title">Battery information</string>
+    <string name="pref_battery_information_desc">Show Nothing’s battery health, cycle count, and battery dates under Settings → Battery.</string>
     <string name="category_essential">Essential Voice</string>
     <string name="pref_essential_voice_unlock_title">Device compatibility</string>
     <string name="pref_essential_voice_unlock_desc">Remove the device restriction. Requires a Nothing OS build with Essential Voice support.</string>
@@ -25,7 +28,7 @@
     <string name="about_card_mode_val">API 102 (libxposed)</string>
     <string name="about_section_system_info">System Information</string>
     <string name="about_target_apps_title">Target Scope</string>
-    <string name="about_target_apps_desc">Nothing Camera, Essential Recorder, Essential Space, SystemUI</string>
+    <string name="about_target_apps_desc">Settings, Nothing Camera, Essential Recorder, Essential Space, SystemUI</string>
     <string name="settings_sync_failed">Settings are not synced. Reopen Notrash after enabling it in LSPosed.</string>
     <string name="open_voice">Open Essential Voice</string>
     <string name="open_voice_desc">Set up voice input and the keyboard button.</string>
@@ -48,7 +51,7 @@
     <string name="module_connected">Module active</string>
     <string name="module_disconnected">Not connected</string>
     <string name="about_features">Features</string>
-    <string name="about_features_value">Camera\nAlways-on display\nEssential Voice</string>
+    <string name="about_features_value">Camera\nAlways-on display\nBattery information\nEssential Voice</string>
     <string name="category_appearance">Appearance</string>
     <string name="high_contrast_title">High contrast</string>
     <string name="high_contrast_desc">Use red accents and stronger contrast.</string>

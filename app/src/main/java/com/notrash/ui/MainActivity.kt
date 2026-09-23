@@ -29,6 +29,7 @@ import androidx.compose.material.icons.outlined.CameraAlt
 import androidx.compose.material.icons.outlined.GraphicEq
 import androidx.compose.material.icons.outlined.Contrast
 import androidx.compose.material.icons.outlined.Visibility
+import androidx.compose.material.icons.outlined.BatteryFull
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -137,6 +138,9 @@ fun NotrashHomeScreen(
     }
     var alwaysOnDisplayUnlock by remember {
         mutableStateOf(NotrashConfig.isAlwaysOnDisplayUnlockEnabled(context))
+    }
+    var batteryInformationUnlock by remember {
+        mutableStateOf(NotrashConfig.isBatteryInformationUnlockEnabled(context))
     }
 
     var applying by remember { mutableStateOf(false) }
@@ -266,6 +270,20 @@ fun NotrashHomeScreen(
                 onCheckedChange = { isChecked ->
                     alwaysOnDisplayUnlock = isChecked
                     NotrashConfig.setAlwaysOnDisplayUnlockEnabled(context, isChecked)
+                }
+            )
+        }
+
+        SettingsSectionHeader(title = stringResource(R.string.category_battery))
+        SettingsNothingGroup {
+            SettingsToggleEntry(
+                title = stringResource(R.string.pref_battery_information_title),
+                description = stringResource(R.string.pref_battery_information_desc),
+                checked = batteryInformationUnlock,
+                icon = Icons.Outlined.BatteryFull,
+                onCheckedChange = { isChecked ->
+                    batteryInformationUnlock = isChecked
+                    NotrashConfig.setBatteryInformationUnlockEnabled(context, isChecked)
                 }
             )
         }

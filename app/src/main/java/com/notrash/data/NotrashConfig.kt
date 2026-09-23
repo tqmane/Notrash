@@ -16,9 +16,11 @@ object NotrashConfig {
     const val AUTHORITY = "com.notrash.provider"
     const val KEY_CAMERA_SOUND_UNLOCK = "camera_sound_unlock"
     const val KEY_ALWAYS_ON_DISPLAY_UNLOCK = "always_on_display_unlock"
+    const val KEY_BATTERY_INFORMATION_UNLOCK = "battery_information_unlock"
     const val KEY_ESSENTIAL_VOICE_UNLOCK = "essential_voice_unlock"
     const val DEFAULT_CAMERA_SOUND_UNLOCK = false
     const val DEFAULT_ALWAYS_ON_DISPLAY_UNLOCK = false
+    const val DEFAULT_BATTERY_INFORMATION_UNLOCK = false
     const val DEFAULT_ESSENTIAL_VOICE_UNLOCK = false
     private const val KEY_HIGH_CONTRAST = "high_contrast"
     private const val KEY_THEME_MODE = "theme_mode"
@@ -84,6 +86,9 @@ object NotrashConfig {
     fun isAlwaysOnDisplayUnlockEnabled(context: Context): Boolean =
         getPrefs(context).getBoolean(KEY_ALWAYS_ON_DISPLAY_UNLOCK, DEFAULT_ALWAYS_ON_DISPLAY_UNLOCK)
 
+    fun isBatteryInformationUnlockEnabled(context: Context): Boolean =
+        getPrefs(context).getBoolean(KEY_BATTERY_INFORMATION_UNLOCK, DEFAULT_BATTERY_INFORMATION_UNLOCK)
+
     fun setCameraSoundUnlockEnabled(context: Context, enabled: Boolean) {
         getPrefs(context).edit().putBoolean(KEY_CAMERA_SOUND_UNLOCK, enabled).apply()
         sync(context)
@@ -96,6 +101,11 @@ object NotrashConfig {
 
     fun setAlwaysOnDisplayUnlockEnabled(context: Context, enabled: Boolean) {
         getPrefs(context).edit().putBoolean(KEY_ALWAYS_ON_DISPLAY_UNLOCK, enabled).apply()
+        sync(context)
+    }
+
+    fun setBatteryInformationUnlockEnabled(context: Context, enabled: Boolean) {
+        getPrefs(context).edit().putBoolean(KEY_BATTERY_INFORMATION_UNLOCK, enabled).apply()
         sync(context)
     }
 
@@ -115,6 +125,7 @@ object NotrashConfig {
             service?.getRemotePreferences(PREFS_NAME)?.edit()
                 ?.putBoolean(KEY_CAMERA_SOUND_UNLOCK, isCameraSoundUnlockEnabled(context))
                 ?.putBoolean(KEY_ALWAYS_ON_DISPLAY_UNLOCK, isAlwaysOnDisplayUnlockEnabled(context))
+                ?.putBoolean(KEY_BATTERY_INFORMATION_UNLOCK, isBatteryInformationUnlockEnabled(context))
                 ?.putBoolean(KEY_ESSENTIAL_VOICE_UNLOCK, isEssentialVoiceUnlockEnabled(context))
                 ?.commit() == true
         } catch (error: RuntimeException) {

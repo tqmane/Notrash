@@ -8,10 +8,13 @@
     <string name="status_inactive_desc">LSPosed で Notrash を有効にして、このアプリを開き直してください。</string>
     <string name="category_camera">カメラ</string>
     <string name="category_display">ディスプレイ</string>
+    <string name="category_battery">バッテリー</string>
     <string name="pref_camera_sound_unlock_title">シャッター音</string>
     <string name="pref_camera_sound_unlock_desc">地域による制限を解除し、マナーモード中も音の設定を切り替えられます。</string>
     <string name="pref_always_on_display_title">常時AOD</string>
     <string name="pref_always_on_display_desc">本体設定の表示タイミングに純正の「常に表示」を追加します。</string>
+    <string name="pref_battery_information_title">バッテリー情報</string>
+    <string name="pref_battery_information_desc">設定の「バッテリー」に最大容量、サイクル数、製造日などを表示します。</string>
     <string name="category_essential">Essential Voice</string>
     <string name="pref_essential_voice_unlock_title">機種制限の解除</string>
     <string name="pref_essential_voice_unlock_desc">機種による制限を解除します。Essential Voice のシステム機能を含む Nothing OS が必要です。</string>
@@ -25,7 +28,7 @@
     <string name="about_card_mode_val">API 102 (libxposed)</string>
     <string name="about_section_system_info">システム情報</string>
     <string name="about_target_apps_title">対象スコープ</string>
-    <string name="about_target_apps_desc">Nothing Camera, Essential Recorder, Essential Space, SystemUI</string>
+    <string name="about_target_apps_desc">設定、Nothing Camera、Essential Recorder、Essential Space、SystemUI</string>
     <string name="settings_sync_failed">設定が未同期です。LSPosed で有効にしたあと、Notrash を開き直してください。</string>
     <string name="open_voice">Essential Voice を開く</string>
     <string name="open_voice_desc">音声入力とキーボードボタンを設定します。</string>
@@ -48,7 +51,7 @@
     <string name="module_connected">モジュール有効</string>
     <string name="module_disconnected">未接続</string>
     <string name="about_features">拡張機能</string>
-    <string name="about_features_value">カメラ\n常時AOD\nEssential Voice</string>
+    <string name="about_features_value">カメラ\n常時AOD\nバッテリー情報\nEssential Voice</string>
     <string name="category_appearance">表示</string>
     <string name="high_contrast_title">ハイコントラスト</string>
     <string name="high_contrast_desc">赤をアクセントに、文字と操作部をはっきり表示します。</string>
