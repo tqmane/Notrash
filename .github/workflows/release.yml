@@ -42,6 +42,19 @@ jobs:
             | base64 --decode \
             > "$RUNNER_TEMP/notrash-release.jks"
 
+      - name: Restore app fonts
+        shell: bash
+        run: |
+          mkdir -p app/src/main/res/font
+
+          printf '%s' '${{ secrets.NTYPE_FONT_B64 }}' \
+            | base64 --decode \
+            > app/src/main/res/font/ntype82_regular.otf
+
+          printf '%s' '${{ secrets.NDOT_FONT_B64 }}' \
+            | base64 --decode \
+            > app/src/main/res/font/ndot_55.otf
+
       - name: Read version
         id: version
         shell: bash
